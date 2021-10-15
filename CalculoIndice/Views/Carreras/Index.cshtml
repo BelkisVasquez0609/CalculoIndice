@@ -1,33 +1,41 @@
 ﻿@model IEnumerable<CalculoIndice.Models.Carrera>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Carreras";
 }
 
-<h2>Index</h2>
+</br>
+<center><h2 style="text-decoration: underline"><b> Carreras</b></h2></center>
+<div class="btn btn-success">
+    @Html.ActionLink("Crear nueva carrera", "Create", new { @class = "btn btn-success" }, new { @style = "color:white;" })
+    <br />
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            @*@Html.DisplayNameFor(model => model.Descripcion)*@
+            <label>Descripción</label>
         </th>
         <th></th>
+
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
+    @foreach (var item in Model)
+    {
+<tr>
         <td>
             @Html.DisplayFor(modelItem => item.Descripcion)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CarreraId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CarreraId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CarreraId })
+            <div class="btn-group-vertical d-flex right">
+                <div class="btn btn-primary">
+                    @Html.ActionLink("Editar   ", "Edit", new { id = item.CarreraId }, new { @style = "color:white;" }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.CarreraId }, new { @style = "color:white;" }) |
+                    @Html.ActionLink("Borrar ", "Delete", new { id = item.CarreraId }, new { @style = "color:white;" })
+                </div>
+            </div>
         </td>
-    </tr>
-}
-
+</tr>
+    }
 </table>
