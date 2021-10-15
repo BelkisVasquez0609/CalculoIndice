@@ -1,26 +1,36 @@
 ﻿@model CalculoIndice.Models.Carrera
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
 
-<h2>Details</h2>
+<br />
+<center><h2><b>Detalles carreras</b></h2></center>
 
-<div>
-    <h4>Carrera</h4>
+<center>
+
     <hr />
-    <dl class="dl-horizontal">
+    <dl class="form-group">
         <dt>
-            @Html.DisplayNameFor(model => model.Descripcion)
+            <b>@Html.DisplayNameFor(model => model.Descripcion)</b>
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Descripcion)
-        </dd>
+            <h3> @Html.DisplayFor(model => model.Descripcion)</h3>
+</dd>
 
     </dl>
-</div>
-<p>
+</center>
+@*<p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.CarreraId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+</p>*@
+
+    @Html.ActionLink("Editar", "Edit", new { id = Model.CarreraId }, new { @class = "btn btn-warning" })
+
+<div class="btn btn-info" style="width:280px">
+
+    @Html.ActionLink("Regresar a la lista de carreras", "Index", new { @class = "btn btn-info" }, new { @style = "color:white;" })
+
+    <br />
+</div>
