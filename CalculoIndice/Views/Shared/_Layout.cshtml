@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Academic", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -26,6 +26,7 @@
                     <li>@Html.ActionLink("Asignaturas", "Index", "Asignaturas")</li>
                     <li>@Html.ActionLink("Carreras", "Index", "Carreras")</li>
                     <li>@Html.ActionLink("Calificaciones", "Index", "Calificacions")</li>
+                    <li>@Html.ActionLink("Reporte Asignaturas", "ReporteAsignaturas", "Asignaturas")</li>
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

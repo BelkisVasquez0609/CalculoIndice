@@ -306,7 +306,7 @@
     <Content Include="Views\Calificacions\Details.cshtml" />
     <Content Include="Views\Calificacions\Edit.cshtml" />
     <Content Include="Views\Calificacions\Index.cshtml" />
-    <Content Include="Views\Asignaturas\IndexB.cshtml" />
+    <Content Include="Views\Asignaturas\ReporteAsignaturas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
