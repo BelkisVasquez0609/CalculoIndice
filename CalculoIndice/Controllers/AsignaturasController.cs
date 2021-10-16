@@ -24,7 +24,7 @@ namespace CalculoIndice.Controllers
             return View(asignatura.ToList());
         }
         // GET: Asignaturas by filter
-        public ActionResult IndexB(string buscar, int pagina = 1)
+        public ActionResult ReporteAsignaturas(string buscar, int pagina = 1)
         {
             int _TotalRegistros = 0;
             int _TotalPaginas = 0;
@@ -38,7 +38,7 @@ namespace CalculoIndice.Controllers
             {
                 foreach (var item in buscar.Split(new char[] {' '}, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    asignatura = asignatura.Where(x => x.Nombre.Contains(item)).ToList();
+                    asignatura = asignatura.Where(x => x.Nombre.Contains(item) || x.Clave.Contains(item)).ToList();
                 }
 
             }
