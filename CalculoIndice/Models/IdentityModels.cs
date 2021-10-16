@@ -29,5 +29,9 @@ namespace CalculoIndice.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<CalculoIndice.Models.Calificacion> Calificacions { get; set; }
+
+        public System.Data.Entity.DbSet<CalculoIndice.Models.Estudiantes> Estudiantes { get; set; }
     }
 }

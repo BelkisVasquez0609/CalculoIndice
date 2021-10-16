@@ -1,0 +1,50 @@
+﻿@model CalculoIndice.Models.Calificacion
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Calificacion</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Asignatura.Clave)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Asignatura.Clave)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Estudiantes.Nombre)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Estudiantes.Nombre)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Calificación)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Calificación)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Promedio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Promedio)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CalificacionId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

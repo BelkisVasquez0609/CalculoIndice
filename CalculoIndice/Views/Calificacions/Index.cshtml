@@ -1,0 +1,51 @@
+﻿@model IEnumerable<CalculoIndice.Models.Calificacion>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Asignatura.Clave)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estudiantes.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Calificación)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Promedio)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Asignatura.Clave)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Estudiantes.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Calificación)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Promedio)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CalificacionId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CalificacionId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CalificacionId })
+        </td>
+    </tr>
+}
+
+</table>

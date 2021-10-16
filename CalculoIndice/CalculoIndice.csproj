@@ -171,9 +171,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AsignaturasController.cs" />
+    <Compile Include="Controllers\CalificacionsController.cs" />
     <Compile Include="Controllers\CarrerasController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="DTO\PaginadorGenerico.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -299,6 +301,12 @@
     <Content Include="Views\Carreras\Details.cshtml" />
     <Content Include="Views\Carreras\Edit.cshtml" />
     <Content Include="Views\Carreras\Index.cshtml" />
+    <Content Include="Views\Calificacions\Create.cshtml" />
+    <Content Include="Views\Calificacions\Delete.cshtml" />
+    <Content Include="Views\Calificacions\Details.cshtml" />
+    <Content Include="Views\Calificacions\Edit.cshtml" />
+    <Content Include="Views\Calificacions\Index.cshtml" />
+    <Content Include="Views\Asignaturas\IndexB.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
