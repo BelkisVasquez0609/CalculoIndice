@@ -1,21 +1,23 @@
 ﻿@model IEnumerable<CalculoIndice.Models.Calificacion>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Calificaciones";
 }
 
-<h2>Index</h2>
+</br>
+<center><h2 style="text-decoration: underline"><b> Asignaturas</b></h2></center>
+<div class="btn btn-success">
+    @Html.ActionLink("Crear nueva asignatura", "Create", new { @class = "btn btn-success" }, new { @style = "color:white;" })
+    <br />
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+<table class="table table-striped table-bordered">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.Asignatura.Clave)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Estudiantes.Nombre)
+            <label>Descripcion</label>
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Calificación)
@@ -26,26 +28,31 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Asignatura.Clave)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Estudiantes.Nombre)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Calificación)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Promedio)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CalificacionId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CalificacionId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CalificacionId })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asignatura.Clave)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estudiantes.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calificación)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Promedio)
+            </td>
+            <td>
+                <div class="btn-group-vertical">
+                    <div class="btn btn-primary">
+                        @Html.ActionLink("Editar   ", "Edit", new { id = item.AsignaturaId }, new { @style = "color:white;" }) |
+                        @Html.ActionLink("Detalles", "Details", new { id = item.AsignaturaId }, new { @style = "color:white;" }) |
+                        @Html.ActionLink("Borrar ", "Delete", new { id = item.AsignaturaId }, new { @style = "color:white;" })
+                    </div>
+                </div>
+            </td>
+        </tr>
+    }
 
 </table>
