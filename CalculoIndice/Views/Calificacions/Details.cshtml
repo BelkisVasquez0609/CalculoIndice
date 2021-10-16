@@ -1,50 +1,66 @@
 ﻿@model CalculoIndice.Models.Calificacion
 
 @{
-    ViewBag.Title = "Details";
+    ViewBag.Title = "Detalles";
 }
-
-<h2>Details</h2>
+<br />
+<center><h2><b>Detalles de la calificación</b></h2></center>
 
 <div>
-    <h4>Calificacion</h4>
+    <h4>Calificación</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Calificación)
-        </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Calificación)
-        </dd>
+    <center>
+        <div class="container" >
+            <div class="row" >
+                <div class="col-lg-4"style="width:580px">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Calificación)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Promedio)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Calificación)
+                    </dd>
+                    </br>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Promedio)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Promedio)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Promedio)
+                    </dd>
+                    </br>
+                </div>
+                <div class="col-lg-4" style="width:500px">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Asignatura.Clave)
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Asignatura.Clave)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Asignatura.Clave)
+                    </dd>
+                    </br>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Estudiantes)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Asignatura.Clave)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Estudiantes.Nombre)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Estudiantes.Nombre)
-        </dd>
-
-    </dl>
+                    <dd>
+                        @Html.DisplayFor(model => model.Estudiantes.Nombre)
+                    </dd>
+                    </br>
+                </div>
+            </div>
+        </div>
+        </center>
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.CalificacionId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+
+<br />
+
+@Html.ActionLink("Editar", "Edit", new { id = Model.CalificacionId }, new { @class = "btn btn-warning" })
+
+<div class="btn btn-info" style="width:280px">
+
+    @Html.ActionLink("Regresar a la lista de asignaturas", "Index", new { @class = "btn btn-info" }, new { @style = "color:white;" })
+
+    <br />
+</div>
