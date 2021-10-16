@@ -1,0 +1,156 @@
+﻿@*@model IEnumerable<CalculoIndice.Models.Asignatura>*@
+
+@model CalculoIndice.DTO.PaginadorGenerico<CalculoIndice.Models.Asignatura>
+
+@{
+    ViewBag.Title = "Reporte asignaturas";
+}
+
+<h2>IndexB</h2>
+@*busqueda*@
+<div class="text-right form-inline">
+    <form method="get" action=@Url.Action("IndexB", "Asignaturas" )>
+        <div class="form-group">
+            @Html.TextBox("buscar", null, new
+            {
+                placeholder = "texto de búsqueda",
+                                    @class = "form-control"
+            })
+        </div>
+        <button class="btn btn-default" type="submit">Buscar</button>
+    </form>
+</div>
+
+@*tabla*@
+<table class="table table-bordered">
+    <tr>
+        <th>
+           Profesor
+        </th>
+        <th>
+          CLAVE
+        </th>
+        <th>
+           Nombre
+        </th>
+        <th>
+           Credito
+        </th>
+        <th>
+           Prerequisito
+        </th>
+        <th>
+          Corequisito
+        </th>
+
+    </tr>
+
+    @foreach (var item in Model.Resultado)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profesores.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Clave)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Credito)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PreRequisitos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CoRequisitos)
+            </td>
+
+        </tr>
+    }
+
+</table>
+
+@*CÓDIGO PARA EL PAGINADOR DE REGISTROS*@
+@if (Model.Resultado.Count() > 0)
+{
+    <span>
+        <strong>@Model.TotalRegistros</strong> registros encontrados
+    </span>
+    <span>&nbsp;|&nbsp;</span>
+    <span>
+        Página <strong>@(Model.PaginaActual)</strong> de
+        <strong>@Model.TotalPaginas</strong>
+    </span>
+    <span>&nbsp;|&nbsp;</span>
+}
+else
+{
+    <span>No hay resultados para esta búsqueda</span>
+    <span>&nbsp;|&nbsp;</span>
+}
+
+@if (Model.PaginaActual > 1)
+{
+    @Html.ActionLink("<<", "IndexB", new { pagina = 1, buscar = Model.BusquedaActual },
+                        new { @class = "btn btn-sm btn-default" })
+    <span></span>
+    @Html.ActionLink("Anterior", "IndexB", new
+    {
+        pagina = Model.PaginaActual - 1,
+                                                buscar = Model.BusquedaActual
+    },
+                                          new { @class = "btn btn-sm btn-default" })
+}
+else
+{
+    @Html.ActionLink("<<", "IndexB", new
+    {
+        pagina = 1,
+                                          buscar = Model.BusquedaActual
+    },
+                                    new { @class = "btn btn-sm btn-default disabled" })
+    <span></span>
+    @Html.ActionLink("Anterior", "IndexB", new
+    {
+        pagina = 1,
+                                                buscar = Model.BusquedaActual
+    },
+                                          new { @class = "btn btn-sm btn-default disabled" })
+}
+
+<span></span>
+
+@if (Model.PaginaActual < Model.TotalPaginas)
+{
+    @Html.ActionLink("Siguiente", "IndexB", new
+    {
+        pagina = Model.PaginaActual + 1,
+                                                 buscar = Model.BusquedaActual
+    },
+                                           new { @class = "btn btn-sm btn-default" })
+    <span></span>
+    @Html.ActionLink(">>", "IndexB", new
+    {
+        pagina = Model.TotalPaginas,
+                                          buscar = Model.BusquedaActual
+    },
+                                    new { @class = "btn btn-sm btn-default" })
+}
+else
+{
+    @Html.ActionLink("Siguiente", "IndexB", new
+    {
+        pagina = Model.TotalPaginas - 1,
+                                                 buscar = Model.BusquedaActual
+    },
+                                           new { @class = "btn btn-sm btn-default disabled" })
+    <span></span>
+    @Html.ActionLink(">>", "IndexB", new
+    {
+        pagina = Model.TotalPaginas,
+                                          buscar = Model.BusquedaActual
+    },
+                                    new { @class = "btn btn-sm btn-default disabled" })
+}
