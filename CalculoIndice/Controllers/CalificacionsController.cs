@@ -12,13 +12,13 @@ namespace CalculoIndice.Controllers
 {
     public class CalificacionsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private CalculoIndiceEntities db = new CalculoIndiceEntities();
 
         // GET: Calificacions
         public ActionResult Index()
         {
-            var calificacions = db.Calificacions.Include(c => c.Asignatura).Include(c => c.Estudiantes);
-            return View(calificacions.ToList());
+            var calificacion = db.Calificacion.Include(c => c.Asignatura).Include(c => c.Estudiantes);
+            return View(calificacion.ToList());
         }
 
         // GET: Calificacions/Details/5
@@ -28,7 +28,7 @@ namespace CalculoIndice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Calificacion calificacion = db.Calificacions.Find(id);
+            Calificacion calificacion = db.Calificacion.Find(id);
             if (calificacion == null)
             {
                 return HttpNotFound();
@@ -39,26 +39,26 @@ namespace CalculoIndice.Controllers
         // GET: Calificacions/Create
         public ActionResult Create()
         {
-        //    ViewBag.AsignaturaId = new SelectList(db.Asignaturas, "AsignaturaId", "Clave");
+            ViewBag.AsignaturaId = new SelectList(db.Asignatura, "AsignaturaId", "Clave");
             ViewBag.EstudiantesId = new SelectList(db.Estudiantes, "EstudiantesId", "Nombre");
             return View();
         }
 
         // POST: Calificacions/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CalificacionId,EstudiantesId,AsignaturaId,Calificación,Promedio")] Calificacion calificacion)
         {
             if (ModelState.IsValid)
             {
-                db.Calificacions.Add(calificacion);
+                db.Calificacion.Add(calificacion);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-       //     ViewBag.AsignaturaId = new SelectList(db.Asignaturas, "AsignaturaId", "Clave", calificacion.AsignaturaId);
+            ViewBag.AsignaturaId = new SelectList(db.Asignatura, "AsignaturaId", "Clave", calificacion.AsignaturaId);
             ViewBag.EstudiantesId = new SelectList(db.Estudiantes, "EstudiantesId", "Nombre", calificacion.EstudiantesId);
             return View(calificacion);
         }
@@ -70,19 +70,19 @@ namespace CalculoIndice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Calificacion calificacion = db.Calificacions.Find(id);
+            Calificacion calificacion = db.Calificacion.Find(id);
             if (calificacion == null)
             {
                 return HttpNotFound();
             }
-          //  ViewBag.AsignaturaId = new SelectList(db.Asignaturas, "AsignaturaId", "Clave", calificacion.AsignaturaId);
+            ViewBag.AsignaturaId = new SelectList(db.Asignatura, "AsignaturaId", "Clave", calificacion.AsignaturaId);
             ViewBag.EstudiantesId = new SelectList(db.Estudiantes, "EstudiantesId", "Nombre", calificacion.EstudiantesId);
             return View(calificacion);
         }
 
         // POST: Calificacions/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
+        // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CalificacionId,EstudiantesId,AsignaturaId,Calificación,Promedio")] Calificacion calificacion)
@@ -93,7 +93,7 @@ namespace CalculoIndice.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-       //     ViewBag.AsignaturaId = new SelectList(db.Asignaturas, "AsignaturaId", "Clave", calificacion.AsignaturaId);
+            ViewBag.AsignaturaId = new SelectList(db.Asignatura, "AsignaturaId", "Clave", calificacion.AsignaturaId);
             ViewBag.EstudiantesId = new SelectList(db.Estudiantes, "EstudiantesId", "Nombre", calificacion.EstudiantesId);
             return View(calificacion);
         }
@@ -105,7 +105,7 @@ namespace CalculoIndice.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Calificacion calificacion = db.Calificacions.Find(id);
+            Calificacion calificacion = db.Calificacion.Find(id);
             if (calificacion == null)
             {
                 return HttpNotFound();
@@ -118,8 +118,8 @@ namespace CalculoIndice.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Calificacion calificacion = db.Calificacions.Find(id);
-            db.Calificacions.Remove(calificacion);
+            Calificacion calificacion = db.Calificacion.Find(id);
+            db.Calificacion.Remove(calificacion);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

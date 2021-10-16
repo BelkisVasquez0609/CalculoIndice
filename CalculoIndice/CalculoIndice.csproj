@@ -301,12 +301,12 @@
     <Content Include="Views\Carreras\Details.cshtml" />
     <Content Include="Views\Carreras\Edit.cshtml" />
     <Content Include="Views\Carreras\Index.cshtml" />
+    <Content Include="Views\Asignaturas\ReporteAsignaturas.cshtml" />
     <Content Include="Views\Calificacions\Create.cshtml" />
     <Content Include="Views\Calificacions\Delete.cshtml" />
     <Content Include="Views\Calificacions\Details.cshtml" />
     <Content Include="Views\Calificacions\Edit.cshtml" />
     <Content Include="Views\Calificacions\Index.cshtml" />
-    <Content Include="Views\Asignaturas\ReporteAsignaturas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
