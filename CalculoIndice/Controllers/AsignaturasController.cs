@@ -23,7 +23,7 @@ namespace CalculoIndice.Controllers
             var asignatura = db.Asignatura.Include(a => a.Asignatura2).Include(a => a.Asignatura3).Include(a => a.Profesores);
             return View(asignatura.ToList());
         }
-        // GET: Asignaturas by filter
+        // GET: Asignaturas General
         public ActionResult ReporteAsignaturas(string buscar, int pagina = 1)
         {
             int _TotalRegistros = 0;
@@ -72,17 +72,16 @@ namespace CalculoIndice.Controllers
         {
             int _TotalRegistros = 0;
             int _TotalPaginas = 0;
-
             //Cargar La Data
 
-            asignatura = db.Asignatura.Include(a => a.Asignatura2).Include(a => a.Asignatura3).Include(a => a.Profesores).ToList();
+            asignatura = db.Asignatura.Include(a => a.Asignatura2).Include(a => a.Asignatura3).Include(a => a.Profesores).Where(a => a.ProfesoresId == 1).ToList();
 
             // Filtro de Informacion
             if (!string.IsNullOrEmpty(buscar))
             {
                 foreach (var item in buscar.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    asignatura = asignatura.Where(x => x.Nombre.Contains(item) || x.Clave.Contains(item)).ToList();
+                    asignatura = asignatura.Where( a=>a.ProfesoresId==1 &&  a.Nombre.Contains(item) || a.Clave.Contains(item)).ToList();       
                 }
 
             }

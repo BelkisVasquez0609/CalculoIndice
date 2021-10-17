@@ -1,18 +1,18 @@
-﻿@model CalculoIndice.DTO.PaginadorGenerico<CalculoIndice.Models.Asignatura>
+﻿@model CalculoIndice.DTO.PaginadorGenerico<CalculoIndice.Models.Calificacion>
 
 @{
-    ViewBag.Title = "Reporte Asignaturas Profesor";
+    ViewBag.Title = "Reporte Estudiantes Asignatura";
 }
 
 </br>
-<center><h2 style="text-decoration: underline"><b> Reporte Asignaturas</b></h2></center>
+<center><h2 style="text-decoration: underline"><b> Reporte Estudiantes por asignaturas</b></h2></center>
 </br>
 @*busqueda*@
 <div class="text-right form-inline">
-    <form method="get" action=@Url.Action("ReporteAsignaturasProfesor", "Asignaturas" )>
+    <form method="get" action=@Url.Action("ReporteEstudiantesAsignatura", "Calificacions" )>
         <div class="form-group">
             <Label>
-                Descripción / Clave  asignatura    </ Label >
+                Nombre estudiante / Clave asignatura </ Label >
                 @Html.TextBox("buscar", null, new
            {
                     placeholder = "Texto de búsqueda",
@@ -23,26 +23,21 @@
     </form>
 </div>
 <br />
-@*tabla*@
 <table class="table table-bordered">
     <tr>
         <th>
-            Profesor
+            Asignatura
         </th>
         <th>
-            CLAVE
+            Estudiantes
         </th>
         <th>
-            Nombre
+            Calificación
         </th>
         <th>
-            Credito
+            Promedio
         </th>
         <th>
-            Prerequisito
-        </th>
-        <th>
-            Corequisito
         </th>
 
     </tr>
@@ -51,24 +46,17 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Profesores.Nombre)
+                @Html.DisplayFor(modelItem => item.Asignatura.Clave)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Clave)
+                @Html.DisplayFor(modelItem => item.Estudiantes.Nombre)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
+                @Html.DisplayFor(modelItem => item.Calificación)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Credito)
+                @Html.DisplayFor(modelItem => item.Promedio)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Asignatura2.Clave)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Asignatura3.Clave)
-            </td>
-
         </tr>
     }
 

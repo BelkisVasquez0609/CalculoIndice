@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CalculoIndice.DTO;
 using CalculoIndice.Models;
 
 namespace CalculoIndice.Controllers
@@ -13,15 +14,57 @@ namespace CalculoIndice.Controllers
     public class CalificacionsController : Controller
     {
         private CalculoIndiceEntities db = new CalculoIndiceEntities();
-
+        private List<Models.Calificacion> calificacions;
+        private List<Models.Estudiantes> estudiantes;
+        private PaginadorGenerico<Models.Calificacion> _PaginadorAsignatura;
+        private readonly int _RegistrosPorPagina = 10;
         // GET: Calificacions
         public ActionResult Index()
         {
             var calificacion = db.Calificacion.Include(c => c.Asignatura).Include(c => c.Estudiantes);
             return View(calificacion.ToList());
         }
+        public ActionResult ReporteEstudiantesAsignatura(string buscar, int pagina = 1)
+        {
+            int _TotalRegistros = 0;
+            int _TotalPaginas = 0;
 
-        // GET: Calificacions/Details/5
+            //Cargar La Data
+            calificacions = db.Calificacion.Include(c => c.Asignatura).Include(c => c.Estudiantes).ToList();
+            // Filtro de Informacion
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                foreach (var item in buscar.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    calificacions = calificacions.Where(x=>x.Asignatura.ProfesoresId==1 && x.Asignatura.Clave.Contains(item)|| x.Estudiantes.Nombre.Contains(item)).ToList();
+                }
+
+            }
+            // SISTEMA DE PAGINACIÓN
+
+            // Número total de registros de la tabla Asignatura
+            _TotalRegistros = calificacions.Count();
+            // Obtenemos la 'página de registros' de la tabla Asignatura
+            calificacions = calificacions.OrderBy(x => x.AsignaturaId).ToList();
+            // Número total de páginas de la tabla Asignatura
+            _TotalPaginas = (int)Math.Ceiling((double)_TotalRegistros / _RegistrosPorPagina);
+
+            // Instanciamos la 'Clase de paginación' y asignamos los nuevos valores
+            _PaginadorAsignatura = new PaginadorGenerico<Models.Calificacion>()
+            {
+                RegistrosPorPagina = _RegistrosPorPagina,
+                TotalRegistros = _TotalRegistros,
+                TotalPaginas = _TotalPaginas,
+                PaginaActual = pagina,
+                BusquedaActual = buscar,
+                Resultado = calificacions
+            };
+
+
+            // Enviamos a la Vista la 'Clase de paginación'
+            return View(_PaginadorAsignatura);
+
+        }
         public ActionResult Details(int? id)
         {
             if (id == null)
