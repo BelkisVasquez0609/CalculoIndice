@@ -33,5 +33,9 @@ namespace CalculoIndice.Models
         public System.Data.Entity.DbSet<CalculoIndice.Models.Calificacion> Calificacions { get; set; }
 
         public System.Data.Entity.DbSet<CalculoIndice.Models.Estudiantes> Estudiantes { get; set; }
+
+        public System.Data.Entity.DbSet<CalculoIndice.Models.Carrera> Carreras { get; set; }
+
+        public System.Data.Entity.DbSet<CalculoIndice.Models.Profesores> Profesores { get; set; }
     }
 }
