@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CalculoIndiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CalculoIndiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Asignatura">
           <Key>
             <PropertyRef Name="AsignaturaId" />
@@ -46,6 +46,7 @@
           <Property Name="DNI" Type="text" />
           <Property Name="Direccion" Type="text" />
           <Property Name="Telefono" Type="text" />
+          <Property Name="Indice" Type="int" />
         </EntityType>
         <EntityType Name="Profesores">
           <Key>
@@ -172,8 +173,7 @@
             <End Role="Estudiantes" EntitySet="Estudiantes" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CalculoIndiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -229,6 +229,7 @@
           <Property Name="Telefono" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Calificacion" Relationship="Self.FK__Calificac__Estud__30F848ED" FromRole="Estudiantes" ToRole="Calificacion" />
           <NavigationProperty Name="Carrera" Relationship="Self.FK__Estudiant__Carre__267ABA7A" FromRole="Estudiantes" ToRole="Carrera" />
+          <Property Name="Indice" Type="Int32" />
         </EntityType>
         <EntityType Name="Profesores">
           <Key>
@@ -397,6 +398,7 @@
           <EntitySetMapping Name="Estudiantes">
             <EntityTypeMapping TypeName="CalculoIndiceModel.Estudiantes">
               <MappingFragment StoreEntitySet="Estudiantes">
+                <ScalarProperty Name="Indice" ColumnName="Indice" />
                 <ScalarProperty Name="EstudiantesId" ColumnName="EstudiantesId" />
                 <ScalarProperty Name="Matricula" ColumnName="Matricula" />
                 <ScalarProperty Name="CarreraId" ColumnName="CarreraId" />

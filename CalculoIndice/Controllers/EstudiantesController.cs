@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using CalculoIndice.DTO;
 using CalculoIndice.Models;
 
 namespace CalculoIndice.Controllers
@@ -13,6 +14,9 @@ namespace CalculoIndice.Controllers
     public class EstudiantesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private List<Models.Estudiantes> estudiantes;
+        private PaginadorGenerico<Models.Estudiantes> _PaginadorAsignatura;
+        private readonly int _RegistrosPorPagina = 10;
 
         // GET: Estudiantes
         public ActionResult Index()

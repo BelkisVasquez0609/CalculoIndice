@@ -26,8 +26,9 @@
                     <li>@Html.ActionLink("Asignaturas", "Index", "Asignaturas")</li>
                     <li>@Html.ActionLink("Carreras", "Index", "Carreras")</li>
                     <li>@Html.ActionLink("Calificaciones", "Index", "Calificacions")</li>
-                    <li>@Html.ActionLink("Reporte Asignaturas", "ReporteAsignaturas", "Asignaturas")</li>
-                    <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Reporte General Asignaturas", "ReporteAsignaturas", "Asignaturas")</li>
+                    <li>@Html.ActionLink("Reporte Asignaturas", "ReporteAsignaturasProfesor", "Asignaturas")</li>
+                    <li>@Html.ActionLink("Rep. Estudiantes Asignatura", "ReporteEstudiantesAsignatura", "Calificacions")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
