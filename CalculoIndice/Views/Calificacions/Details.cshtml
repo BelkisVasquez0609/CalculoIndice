@@ -13,7 +13,7 @@
     <center>
         <div class="container" >
             <div class="row" >
-                <div class="col-lg-4"style="width:580px">
+                <div class="col-lg-4" style="width:580px">
                     <dt>
                         @Html.DisplayNameFor(model => model.Calificación)
                     </dt>
@@ -23,22 +23,23 @@
                     </dd>
                     </br>
                     <dt>
-                        @Html.DisplayNameFor(model => model.Promedio)
-                    </dt>
-
-                    <dd>
-                        @Html.DisplayFor(model => model.Promedio)
-                    </dd>
-                    </br>
-                </div>
-                <div class="col-lg-4" style="width:500px">
-                    <dt>
                         @Html.DisplayNameFor(model => model.Asignatura.Clave)
                     </dt>
 
                     <dd>
                         @Html.DisplayFor(model => model.Asignatura.Clave)
                     </dd>
+                    @*<dt>
+            @Html.DisplayNameFor(model => model.Promedio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Promedio)
+        </dd>*@
+                    </br>
+                </div>
+                <div class="col-lg-4" style="width:500px">
+               
                     </br>
                     <dt>
                         @Html.DisplayNameFor(model => model.Estudiantes)
