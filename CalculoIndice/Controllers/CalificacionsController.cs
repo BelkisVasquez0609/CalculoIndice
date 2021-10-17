@@ -30,13 +30,13 @@ namespace CalculoIndice.Controllers
             int _TotalPaginas = 0;
 
             //Cargar La Data
-            calificacions = db.Calificacion.Include(c => c.Asignatura).Include(c => c.Estudiantes).ToList();
+            calificacions = db.Calificacion.Include(c => c.Asignatura).Include(c => c.Estudiantes).Where(x => x.Asignatura.ProfesoresId == 1).ToList();
             // Filtro de Informacion
             if (!string.IsNullOrEmpty(buscar))
             {
                 foreach (var item in buscar.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    calificacions = calificacions.Where(x=>x.Asignatura.ProfesoresId==1 && x.Asignatura.Clave.Contains(item)|| x.Estudiantes.Nombre.Contains(item)).ToList();
+                    calificacions = calificacions.Where(x=>x.Asignatura.ProfesoresId==1 && x.Asignatura.Clave.Contains(item) || x.Estudiantes.Nombre.Contains(item)).ToList();
                 }
 
             }

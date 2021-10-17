@@ -29,7 +29,10 @@
             Asignatura
         </th>
         <th>
-            Estudiantes
+            Estudiante
+        </th>
+        <th>
+            Matricula Estudiante
         </th>
         <th>
             Calificación
@@ -44,20 +47,23 @@
 
     @foreach (var item in Model.Resultado)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Asignatura.Clave)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estudiantes.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Calificación)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Promedio)
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Asignatura.Clave)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Estudiantes.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Estudiantes.Matricula)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Calificación)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Promedio)
+    </td>
+</tr>
     }
 
 </table>

@@ -173,7 +173,6 @@
     <Compile Include="Controllers\AsignaturasController.cs" />
     <Compile Include="Controllers\CalificacionsController.cs" />
     <Compile Include="Controllers\CarrerasController.cs" />
-    <Compile Include="Controllers\EstudiantesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfesoresController.cs" />
@@ -310,11 +309,6 @@
     <Content Include="Views\Calificacions\Edit.cshtml" />
     <Content Include="Views\Calificacions\Index.cshtml" />
     <Content Include="Views\Asignaturas\ReporteAsignaturasProfesor.cshtml" />
-    <Content Include="Views\Estudiantes\Create.cshtml" />
-    <Content Include="Views\Estudiantes\Delete.cshtml" />
-    <Content Include="Views\Estudiantes\Details.cshtml" />
-    <Content Include="Views\Estudiantes\Edit.cshtml" />
-    <Content Include="Views\Estudiantes\Index.cshtml" />
     <Content Include="Views\Profesores\Create.cshtml" />
     <Content Include="Views\Profesores\Delete.cshtml" />
     <Content Include="Views\Profesores\Details.cshtml" />
