@@ -67,6 +67,50 @@ namespace CalculoIndice.Controllers
             return View(_PaginadorAsignatura);
            
         }
+        // GET: Asignaturas by filter
+        public ActionResult ReporteAsignaturasProfesor(string buscar, int pagina = 1)
+        {
+            int _TotalRegistros = 0;
+            int _TotalPaginas = 0;
+
+            //Cargar La Data
+
+            asignatura = db.Asignatura.Include(a => a.Asignatura2).Include(a => a.Asignatura3).Include(a => a.Profesores).ToList();
+
+            // Filtro de Informacion
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                foreach (var item in buscar.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    asignatura = asignatura.Where(x => x.Nombre.Contains(item) || x.Clave.Contains(item)).ToList();
+                }
+
+            }
+            // SISTEMA DE PAGINACIÓN
+
+            // Número total de registros de la tabla Asignatura
+            _TotalRegistros = asignatura.Count();
+            // Obtenemos la 'página de registros' de la tabla Asignatura
+            asignatura = asignatura.OrderBy(x => x.AsignaturaId).ToList();
+            // Número total de páginas de la tabla Asignatura
+            _TotalPaginas = (int)Math.Ceiling((double)_TotalRegistros / _RegistrosPorPagina);
+
+            // Instanciamos la 'Clase de paginación' y asignamos los nuevos valores
+            _PaginadorAsignatura = new PaginadorGenerico<Models.Asignatura>()
+            {
+                RegistrosPorPagina = _RegistrosPorPagina,
+                TotalRegistros = _TotalRegistros,
+                TotalPaginas = _TotalPaginas,
+                PaginaActual = pagina,
+                BusquedaActual = buscar,
+                Resultado = asignatura
+            };
+
+
+            // Enviamos a la Vista la 'Clase de paginación'
+            return View(_PaginadorAsignatura);
+
+        }
 
         // GET: Asignaturas/Details/5
         public ActionResult Details(int? id)
