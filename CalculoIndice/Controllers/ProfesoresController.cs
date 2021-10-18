@@ -12,7 +12,7 @@ namespace CalculoIndice.Controllers
 {
     public class ProfesoresController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private CalculoIndiceEntities1 db = new CalculoIndiceEntities1();
 
         // GET: Profesores
         public ActionResult Index()

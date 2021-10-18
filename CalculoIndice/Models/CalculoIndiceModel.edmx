@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="CalculoIndiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="CalculoIndiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Asignatura">
           <Key>
             <PropertyRef Name="AsignaturaId" />
@@ -173,7 +173,8 @@
             <End Role="Estudiantes" EntitySet="Estudiantes" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CalculoIndiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -227,9 +228,9 @@
           <Property Name="DNI" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Direccion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Telefono" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Indice" Type="Int32" />
           <NavigationProperty Name="Calificacion" Relationship="Self.FK__Calificac__Estud__30F848ED" FromRole="Estudiantes" ToRole="Calificacion" />
           <NavigationProperty Name="Carrera" Relationship="Self.FK__Estudiant__Carre__267ABA7A" FromRole="Estudiantes" ToRole="Carrera" />
-          <Property Name="Indice" Type="Int32" />
         </EntityType>
         <EntityType Name="Profesores">
           <Key>
@@ -325,7 +326,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="CalculoIndiceEntities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="CalculoIndiceEntities1" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Asignatura" EntityType="Self.Asignatura" />
           <EntitySet Name="Calificacion" EntityType="Self.Calificacion" />
           <EntitySet Name="Carrera" EntityType="Self.Carrera" />
@@ -362,7 +363,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="CalculoIndiceModelStoreContainer" CdmEntityContainer="CalculoIndiceEntities">
+        <EntityContainerMapping StorageEntityContainer="CalculoIndiceModelStoreContainer" CdmEntityContainer="CalculoIndiceEntities1">
           <EntitySetMapping Name="Asignatura">
             <EntityTypeMapping TypeName="CalculoIndiceModel.Asignatura">
               <MappingFragment StoreEntitySet="Asignatura">
@@ -398,7 +399,6 @@
           <EntitySetMapping Name="Estudiantes">
             <EntityTypeMapping TypeName="CalculoIndiceModel.Estudiantes">
               <MappingFragment StoreEntitySet="Estudiantes">
-                <ScalarProperty Name="Indice" ColumnName="Indice" />
                 <ScalarProperty Name="EstudiantesId" ColumnName="EstudiantesId" />
                 <ScalarProperty Name="Matricula" ColumnName="Matricula" />
                 <ScalarProperty Name="CarreraId" ColumnName="CarreraId" />
@@ -407,6 +407,7 @@
                 <ScalarProperty Name="DNI" ColumnName="DNI" />
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Indice" ColumnName="Indice" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
