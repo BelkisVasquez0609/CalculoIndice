@@ -13,7 +13,7 @@ namespace CalculoIndice.Controllers
 {
     public class AsignaturasController : Controller
     {
-        private CalculoIndiceEntities1 db = new CalculoIndiceEntities1();
+        private CalculoIndiceEntities3 db = new CalculoIndiceEntities3();
         private List<Models.Asignatura> asignatura;
         private PaginadorGenerico<Models.Asignatura> _PaginadorAsignatura;
         private readonly int _RegistrosPorPagina = 10;

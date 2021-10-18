@@ -10,107 +10,112 @@ using CalculoIndice.Models;
 
 namespace CalculoIndice.Controllers
 {
-    public class CarrerasController : Controller
+    public class Estudiantes1Controller : Controller
     {
         private CalculoIndiceEntities3 db = new CalculoIndiceEntities3();
 
-        // GET: Carreras
+        // GET: Estudiantes1
         public ActionResult Index()
         {
-            return View(db.Carrera.ToList());
+            var estudiantes = db.Estudiantes.Include(e => e.Carrera);
+            return View(estudiantes.ToList());
         }
 
-        // GET: Carreras/Details/5
+        // GET: Estudiantes1/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carrera carrera = db.Carrera.Find(id);
-            if (carrera == null)
+            Estudiantes estudiantes = db.Estudiantes.Find(id);
+            if (estudiantes == null)
             {
                 return HttpNotFound();
             }
-            return View(carrera);
+            return View(estudiantes);
         }
 
-        // GET: Carreras/Create
+        // GET: Estudiantes1/Create
         public ActionResult Create()
         {
+            ViewBag.CarreraId = new SelectList(db.Carrera, "CarreraId", "Descripcion");
             return View();
         }
 
-        // POST: Carreras/Create
+        // POST: Estudiantes1/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "CarreraId,Descripcion")] Carrera carrera)
+        public ActionResult Create([Bind(Include = "EstudiantesId,Matricula,CarreraId,Nombre,CorreoElectronico,DNI,Direccion,Telefono,Indice")] Estudiantes estudiantes)
         {
             if (ModelState.IsValid)
             {
-                db.Carrera.Add(carrera);
+                db.Estudiantes.Add(estudiantes);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(carrera);
+            ViewBag.CarreraId = new SelectList(db.Carrera, "CarreraId", "Descripcion", estudiantes.CarreraId);
+            return View(estudiantes);
         }
 
-        // GET: Carreras/Edit/5
+        // GET: Estudiantes1/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carrera carrera = db.Carrera.Find(id);
-            if (carrera == null)
+            Estudiantes estudiantes = db.Estudiantes.Find(id);
+            if (estudiantes == null)
             {
                 return HttpNotFound();
             }
-            return View(carrera);
+            ViewBag.CarreraId = new SelectList(db.Carrera, "CarreraId", "Descripcion", estudiantes.CarreraId);
+            return View(estudiantes);
         }
 
-        // POST: Carreras/Edit/5
+        // POST: Estudiantes1/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "CarreraId,Descripcion")] Carrera carrera)
+        public ActionResult Edit([Bind(Include = "EstudiantesId,Matricula,CarreraId,Nombre,CorreoElectronico,DNI,Direccion,Telefono,Indice")] Estudiantes estudiantes)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(carrera).State = EntityState.Modified;
+                db.Entry(estudiantes).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(carrera);
+            ViewBag.CarreraId = new SelectList(db.Carrera, "CarreraId", "Descripcion", estudiantes.CarreraId);
+            return View(estudiantes);
         }
 
-        // GET: Carreras/Delete/5
+        // GET: Estudiantes1/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Carrera carrera = db.Carrera.Find(id);
-            if (carrera == null)
+            Estudiantes estudiantes = db.Estudiantes.Find(id);
+            if (estudiantes == null)
             {
                 return HttpNotFound();
             }
-            return View(carrera);
+            return View(estudiantes);
         }
 
-        // POST: Carreras/Delete/5
+        // POST: Estudiantes1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Carrera carrera = db.Carrera.Find(id);
-            db.Carrera.Remove(carrera);
+            Estudiantes estudiantes = db.Estudiantes.Find(id);
+            db.Estudiantes.Remove(estudiantes);
             db.SaveChanges();
             return RedirectToAction("Index");
         }

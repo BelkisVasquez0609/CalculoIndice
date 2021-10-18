@@ -173,7 +173,7 @@
     <Compile Include="Controllers\AsignaturasController.cs" />
     <Compile Include="Controllers\CalificacionsController.cs" />
     <Compile Include="Controllers\CarrerasController.cs" />
-    <Compile Include="Controllers\EstudiantesController.cs" />
+    <Compile Include="Controllers\Estudiantes1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfesoresController.cs" />
@@ -183,39 +183,36 @@
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Asignatura.cs">
-      <DependentUpon>CalculoIndiceModel.tt</DependentUpon>
+      <DependentUpon>CalculoIndicesModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CalculoIndiceModel.Context.cs">
+    <Compile Include="Models\CalculoIndicesModels.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CalculoIndiceModel.Context.tt</DependentUpon>
+      <DependentUpon>CalculoIndicesModels.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CalculoIndiceModel.cs">
+    <Compile Include="Models\CalculoIndicesModels.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CalculoIndiceModel.tt</DependentUpon>
+      <DependentUpon>CalculoIndicesModels.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CalculoIndiceModel.Designer.cs">
+    <Compile Include="Models\CalculoIndicesModels.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>CalculoIndiceModel.edmx</DependentUpon>
+      <DependentUpon>CalculoIndicesModels.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Calificacion.cs">
-      <DependentUpon>CalculoIndiceModel.tt</DependentUpon>
+      <DependentUpon>CalculoIndicesModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Carrera.cs">
-      <DependentUpon>CalculoIndiceModel.tt</DependentUpon>
+      <DependentUpon>CalculoIndicesModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Estudiantes.cs">
-      <DependentUpon>CalculoIndiceModel.tt</DependentUpon>
+      <DependentUpon>CalculoIndicesModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Profesores.cs">
-      <DependentUpon>CalculoIndiceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Models\sysdiagrams.cs">
-      <DependentUpon>CalculoIndiceModel.tt</DependentUpon>
+      <DependentUpon>CalculoIndicesModels.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -229,24 +226,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\CalculoIndiceModel.Context.tt">
+    <Content Include="Models\CalculoIndicesModels.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CalculoIndiceModel.edmx</DependentUpon>
-      <LastGenOutput>CalculoIndiceModel.Context.cs</LastGenOutput>
+      <DependentUpon>CalculoIndicesModels.edmx</DependentUpon>
+      <LastGenOutput>CalculoIndicesModels.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\CalculoIndiceModel.tt">
+    <Content Include="Models\CalculoIndicesModels.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>CalculoIndiceModel.edmx</DependentUpon>
-      <LastGenOutput>CalculoIndiceModel.cs</LastGenOutput>
+      <DependentUpon>CalculoIndicesModels.edmx</DependentUpon>
+      <LastGenOutput>CalculoIndicesModels.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\CalculoIndiceModel.edmx">
+    <EntityDeploy Include="Models\CalculoIndicesModels.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>CalculoIndiceModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>CalculoIndicesModels.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\CalculoIndiceModel.edmx.diagram">
-      <DependentUpon>CalculoIndiceModel.edmx</DependentUpon>
+    <Content Include="Models\CalculoIndicesModels.edmx.diagram">
+      <DependentUpon>CalculoIndicesModels.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -316,11 +313,11 @@
     <Content Include="Views\Profesores\Edit.cshtml" />
     <Content Include="Views\Profesores\Index.cshtml" />
     <Content Include="Views\Calificacions\ReporteEstudiantesAsignatura.cshtml" />
-    <Content Include="Views\Estudiantes\Create.cshtml" />
-    <Content Include="Views\Estudiantes\Delete.cshtml" />
-    <Content Include="Views\Estudiantes\Details.cshtml" />
-    <Content Include="Views\Estudiantes\Edit.cshtml" />
-    <Content Include="Views\Estudiantes\Index.cshtml" />
+    <Content Include="Views\Estudiantes1\Create.cshtml" />
+    <Content Include="Views\Estudiantes1\Delete.cshtml" />
+    <Content Include="Views\Estudiantes1\Details.cshtml" />
+    <Content Include="Views\Estudiantes1\Edit.cshtml" />
+    <Content Include="Views\Estudiantes1\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

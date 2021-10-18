@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ca33e9c74094459b92fe27594b4e45ef" Name="Diagram1">
+        <EntityTypeShape EntityType="CalculoIndiceModel1.Asignatura" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalculoIndiceModel1.Calificacion" Width="1.5" PointX="5.25" PointY="1.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalculoIndiceModel1.Carrera" Width="1.5" PointX="0.75" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalculoIndiceModel1.Estudiantes" Width="1.5" PointX="3" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="CalculoIndiceModel1.Profesores" Width="1.5" PointX="0.75" PointY="1.625" IsExpanded="true" />
+        <AssociationConnector Association="CalculoIndiceModel1.FK__Calificac__Asign__2F10007B" ManuallyRouted="false" />
+        <AssociationConnector Association="CalculoIndiceModel1.FK_Asignatura_Asignatura" ManuallyRouted="false" />
+        <AssociationConnector Association="CalculoIndiceModel1.FK_Asignatura_Asignatura1" ManuallyRouted="false" />
+        <AssociationConnector Association="CalculoIndiceModel1.FK_Asignatura_Profesores" ManuallyRouted="false" />
+        <AssociationConnector Association="CalculoIndiceModel1.FK__Calificac__Estud__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="CalculoIndiceModel1.FK__Estudiant__Carre__267ABA7A" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

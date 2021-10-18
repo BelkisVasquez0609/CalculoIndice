@@ -17,19 +17,21 @@ namespace CalculoIndice.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Asignatura()
         {
+            this.Calificacion = new HashSet<Calificacion>();
             this.Asignatura1 = new HashSet<Asignatura>();
             this.Asignatura11 = new HashSet<Asignatura>();
-            this.Calificacion = new HashSet<Calificacion>();
         }
     
         public int AsignaturaId { get; set; }
         public string Clave { get; set; }
         public string Nombre { get; set; }
-        public string Credito { get; set; }
+        public Nullable<int> Credito { get; set; }
         public Nullable<int> PreRequisitos { get; set; }
         public Nullable<int> CoRequisitos { get; set; }
         public Nullable<int> ProfesoresId { get; set; }
     
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Calificacion> Calificacion { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Asignatura> Asignatura1 { get; set; }
         public virtual Asignatura Asignatura2 { get; set; }
@@ -37,7 +39,5 @@ namespace CalculoIndice.Models
         public virtual ICollection<Asignatura> Asignatura11 { get; set; }
         public virtual Asignatura Asignatura3 { get; set; }
         public virtual Profesores Profesores { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Calificacion> Calificacion { get; set; }
     }
 }
