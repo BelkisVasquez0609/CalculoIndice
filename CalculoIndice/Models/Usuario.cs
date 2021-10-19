@@ -12,15 +12,14 @@ namespace CalculoIndice.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Calificacion
+    public partial class Usuario
     {
-        public int CalificacionId { get; set; }
-        public Nullable<int> EstudiantesId { get; set; }
-        public Nullable<int> AsignaturaId { get; set; }
-        public string Calificación { get; set; }
-        public Nullable<int> Promedio { get; set; }
-    
-        public virtual Asignatura Asignatura { get; set; }
-        public virtual Estudiantes Estudiantes { get; set; }
+        public int UserId { get; set; }
+        public string Username { get; set; }
+        public string Password { get; set; }
+        public string Email { get; set; }
+        public Nullable<System.DateTime> CreatedDate { get; set; }
+        public Nullable<System.DateTime> LastLoginDate { get; set; }
+        public Nullable<int> EstudianteId { get; set; }
     }
 }

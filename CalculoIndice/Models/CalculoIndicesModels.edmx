@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="CalculoIndiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="CalculoIndiceModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Asignatura">
           <Key>
             <PropertyRef Name="AsignaturaId" />
@@ -24,7 +24,7 @@
           <Property Name="CalificacionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="EstudiantesId" Type="int" />
           <Property Name="AsignaturaId" Type="int" />
-          <Property Name="Calificación" Type="text" />
+          <Property Name="Calificación" Type="char" MaxLength="1" />
           <Property Name="Promedio" Type="int" />
         </EntityType>
         <EntityType Name="Carrera">
@@ -46,7 +46,7 @@
           <Property Name="DNI" Type="text" />
           <Property Name="Direccion" Type="text" />
           <Property Name="Telefono" Type="text" />
-          <Property Name="Indice" Type="float" />
+          <Property Name="Indice" Type="float" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Profesores">
           <Key>
@@ -58,6 +58,18 @@
           <Property Name="DNI" Type="text" />
           <Property Name="Direccion" Type="text" />
           <Property Name="Telefono" Type="text" />
+        </EntityType>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="CreatedDate" Type="date" />
+          <Property Name="LastLoginDate" Type="date" />
+          <Property Name="EstudianteId" Type="int" />
         </EntityType>
         <Association Name="FK__Calificac__Asign__2F10007B">
           <End Role="Asignatura" Type="Self.Asignatura" Multiplicity="0..1" />
@@ -131,12 +143,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="GetIndice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+          <Parameter Name="Id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="Validate_User" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="CalculoIndiceModelStoreContainer">
           <EntitySet Name="Asignatura" EntityType="Self.Asignatura" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Calificacion" EntityType="Self.Calificacion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Carrera" EntityType="Self.Carrera" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profesores" EntityType="Self.Profesores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Calificac__Asign__2F10007B" Association="Self.FK__Calificac__Asign__2F10007B">
             <End Role="Asignatura" EntitySet="Asignatura" />
             <End Role="Calificacion" EntitySet="Calificacion" />
@@ -162,8 +182,7 @@
             <End Role="Asignatura" EntitySet="Asignatura" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="CalculoIndiceModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -192,7 +211,7 @@
           <Property Name="CalificacionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EstudiantesId" Type="Int32" />
           <Property Name="AsignaturaId" Type="Int32" />
-          <Property Name="Calificación" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Calificación" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
           <Property Name="Promedio" Type="Int32" />
           <NavigationProperty Name="Asignatura" Relationship="Self.FK__Calificac__Asign__2F10007B" FromRole="Calificacion" ToRole="Asignatura" />
           <NavigationProperty Name="Estudiantes" Relationship="Self.FK__Calificac__Estud__30F848ED" FromRole="Calificacion" ToRole="Estudiantes" />
@@ -335,7 +354,24 @@
             <End Role="Carrera" EntitySet="Carrera" />
             <End Role="Estudiantes" EntitySet="Estudiantes" />
           </AssociationSet>
+          <EntitySet Name="Usuario" EntityType="CalculoIndiceModel.Usuario" />
+          <FunctionImport Name="Validate_User" ReturnType="Collection(Int32)">
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
+        <EntityType Name="Usuario">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="0" />
+          <Property Name="LastLoginDate" Type="DateTime" Precision="0" />
+          <Property Name="EstudianteId" Type="Int32" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -401,6 +437,20 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Usuario">
+            <EntityTypeMapping TypeName="CalculoIndiceModel.Usuario">
+              <MappingFragment StoreEntitySet="Usuario">
+                <ScalarProperty Name="EstudianteId" ColumnName="EstudianteId" />
+                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Validate_User" FunctionName="CalculoIndiceModel.Store.Validate_User" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -8,66 +8,71 @@ using System.Web;
 using System.Web.Mvc;
 using CalculoIndice.DTO;
 using CalculoIndice.Models;
+using System.Web.Security;
 namespace CalculoIndice.Controllers
 {
     public class HomeController : Controller
     {
         private CalculoIndiceEntities4 db = new CalculoIndiceEntities4();
+
+        [AllowAnonymous]
         public ActionResult Index()
-        {//cmbiar estudiantesId por UsuarioId
-            var calificacion = db.Calificacion.Include(c => c.Asignatura).Include(c => c.Estudiantes).Where(x => x.Estudiantes.EstudiantesId == 1);
-            var Puntos = 0;
-            var SumCreditos = 0;
-            var Creditos = 0;
-            var Mul = 0;
-            float Indice = 0;
-
-            foreach (var item in calificacion)
-            {
-                if (item.Calificación == "A" || item.Calificación == "a")
-                {
-                    Mul = 4;
-                }
-                else if (item.Calificación == "B" || item.Calificación == "B")
-                {
-                    Mul = 3;
-                }
-                else if (item.Calificación == "C" || item.Calificación == "c")
-                {
-                    Mul = 2;
-                }
-                else
-                {
-                    Mul = 0;
-
-                }
-                Creditos = (Convert.ToInt32(item.Asignatura.Credito));
-                SumCreditos += Creditos;
-                Puntos += (Creditos * Mul);
-            }
-            if (SumCreditos != 0)
-            {
-                Indice = (Puntos / SumCreditos);
-            }
-            else {
-                Indice = 0;
-            }
-            ViewBag.Indice = Indice;
-            return View();
-        }
-
-        public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
+        
+        public ActionResult About(int EstudianteID )
+        {
+            var indice = (from s in db.Estudiantes
+                          where s.EstudiantesId == EstudianteID
+                          select s.Indice.Value).Single();
+
+            ViewBag.Indice = 4.0;
+            ViewBag.Message = "Su Indice es: "+ indice;
+
+            return View();
+        }
+
+        
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult Index(DTO.Usuarios user)
+        {
+            CalculoIndiceEntities4 usersEntities = new CalculoIndiceEntities4();
+            int? userId = usersEntities.Validate_User(user.Username, user.Password).FirstOrDefault();
+
+            string message = string.Empty;
+            switch (userId.Value)
+            {
+                case -1:
+                    message = "Username and/or password is incorrect.";
+                    break;
+                case -2:
+                    message = "Account has not been activated.";
+                    break;
+                default:
+                    FormsAuthentication.SetAuthCookie(user.Username, user.RememberMe);
+                    return RedirectToAction("About", new { EstudianteID = userId});
+            }
+
+            ViewBag.Message = message;
+            return View("Index");
+        }
+
+        [HttpPost]
+        [Authorize]
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            return RedirectToAction("Index");
         }
     }
 }
