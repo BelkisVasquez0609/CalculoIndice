@@ -28,7 +28,7 @@ namespace CalculoIndice.Models
         public string DNI { get; set; }
         public string Direccion { get; set; }
         public string Telefono { get; set; }
-        public Nullable<int> Indice { get; set; }
+        public Nullable<double> Indice { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Calificacion> Calificacion { get; set; }

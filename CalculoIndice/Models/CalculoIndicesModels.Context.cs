@@ -13,10 +13,10 @@ namespace CalculoIndice.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class CalculoIndiceEntities3 : DbContext
+    public partial class CalculoIndiceEntities4 : DbContext
     {
-        public CalculoIndiceEntities3()
-            : base("name=CalculoIndiceEntities3")
+        public CalculoIndiceEntities4()
+            : base("name=CalculoIndiceEntities4")
         {
         }
     

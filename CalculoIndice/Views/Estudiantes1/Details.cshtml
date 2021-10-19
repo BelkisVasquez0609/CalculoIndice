@@ -4,7 +4,8 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+</br>
+<center><h2 style="text-decoration: underline"><b> Detalle estudiante</b></h2></center>
 
 <div>
     <h4>Estudiantes</h4>
@@ -67,11 +68,11 @@
         </dd>
 
         <dt>
-            @Html.DisplayNameFor(model => model.Indice)
+            @Html.HiddenFor(model => model.Indice)
         </dt>
 
         <dd>
-            @Html.DisplayFor(model => model.Indice)
+            @Html.HiddenFor(model => model.Indice)
         </dd>
 
     </dl>

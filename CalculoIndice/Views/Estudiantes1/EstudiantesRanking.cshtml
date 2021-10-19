@@ -1,0 +1,154 @@
+﻿@model CalculoIndice.DTO.PaginadorGenerico<CalculoIndice.Models.Estudiantes>
+
+@{
+    ViewBag.Title = "Estudiantes por ranking";
+}
+</br>
+<center><h2 style="text-decoration: underline"><b> Reporte Estudiantes por Ranking</b></h2></center>
+</br>
+
+<br />
+@*tabla*@
+<table class="table">
+    <tr>
+        <th>
+            Matricula
+        </th>
+        <th>
+            Nombre
+        </th>
+        <th>
+            Correo Electronico
+        </th>
+        <th>
+            DNI
+        </th>
+        <th>
+            Direccion
+        </th>
+        <th>
+            Telefono
+        </th>
+        <th>
+            Indice
+        </th>
+        <th>
+            Carrera
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Resultado)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Matricula)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CorreoElectronico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DNI)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Indice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Carrera.Descripcion)
+            </td>
+        </tr>
+    }
+
+</table>
+
+@*CÓDIGO PARA EL PAGINADOR DE REGISTROS*@
+@if (Model.Resultado.Count() > 0)
+{
+    <span>
+        <strong>@Model.TotalRegistros</strong> registros encontrados
+    </span>
+    <span>&nbsp;|&nbsp;</span>
+    <span>
+        Página <strong>@(Model.PaginaActual)</strong> de
+        <strong>@Model.TotalPaginas</strong>
+    </span>
+    <span>&nbsp;|&nbsp;</span>
+}
+else
+{
+    <span>No hay resultados para esta búsqueda</span>
+    <span>&nbsp;|&nbsp;</span>
+}
+
+@if (Model.PaginaActual > 1)
+{
+    @Html.ActionLink("<<", "EstudiantesRanking", new { pagina = 1, buscar = Model.BusquedaActual },
+                        new { @class = "btn btn-sm btn-default" })
+    <span></span>
+    @Html.ActionLink("Anterior", "EstudiantesRanking", new
+    {
+        pagina = Model.PaginaActual - 1,
+                                                buscar = Model.BusquedaActual
+    },
+                                          new { @class = "btn btn-sm btn-default" })
+}
+else
+{
+    @Html.ActionLink("<<", "EstudiantesRanking", new
+    {
+        pagina = 1,
+                                          buscar = Model.BusquedaActual
+    },
+                                    new { @class = "btn btn-sm btn-default disabled" })
+    <span></span>
+    @Html.ActionLink("Anterior", "EstudiantesRanking", new
+    {
+        pagina = 1,
+                                                buscar = Model.BusquedaActual
+    },
+                                          new { @class = "btn btn-sm btn-default disabled" })
+}
+
+<span></span>
+
+@if (Model.PaginaActual < Model.TotalPaginas)
+{
+    @Html.ActionLink("Siguiente", "EstudiantesRanking", new
+    {
+        pagina = Model.PaginaActual + 1,
+                                                 buscar = Model.BusquedaActual
+    },
+                                           new { @class = "btn btn-sm btn-default" })
+    <span></span>
+    @Html.ActionLink(">>", "EstudiantesRanking", new
+    {
+        pagina = Model.TotalPaginas,
+                                          buscar = Model.BusquedaActual
+    },
+                                    new { @class = "btn btn-sm btn-default" })
+}
+else
+{
+    @Html.ActionLink("Siguiente", "EstudiantesRanking", new
+    {
+        pagina = Model.TotalPaginas - 1,
+                                                 buscar = Model.BusquedaActual
+    },
+                                           new { @class = "btn btn-sm btn-default disabled" })
+    <span></span>
+    @Html.ActionLink(">>", "EstudiantesRanking", new
+    {
+        pagina = Model.TotalPaginas,
+                                          buscar = Model.BusquedaActual
+    },
+                                    new { @class = "btn btn-sm btn-default disabled" })
+}

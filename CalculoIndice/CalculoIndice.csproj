@@ -318,6 +318,7 @@
     <Content Include="Views\Estudiantes1\Details.cshtml" />
     <Content Include="Views\Estudiantes1\Edit.cshtml" />
     <Content Include="Views\Estudiantes1\Index.cshtml" />
+    <Content Include="Views\Estudiantes1\EstudiantesRanking.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

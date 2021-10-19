@@ -13,7 +13,7 @@ namespace CalculoIndice.Controllers
 {
     public class CalificacionsController : Controller
     {
-        private CalculoIndiceEntities3 db = new CalculoIndiceEntities3();
+        private CalculoIndiceEntities4 db = new CalculoIndiceEntities4();
         private List<Models.Calificacion> calificacions;
         private List<Models.Estudiantes> estudiantes;
         private PaginadorGenerico<Models.Calificacion> _PaginadorAsignatura;

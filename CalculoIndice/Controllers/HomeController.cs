@@ -12,7 +12,7 @@ namespace CalculoIndice.Controllers
 {
     public class HomeController : Controller
     {
-        private CalculoIndiceEntities3 db = new CalculoIndiceEntities3();
+        private CalculoIndiceEntities4 db = new CalculoIndiceEntities4();
         public ActionResult Index()
         {//cmbiar estudiantesId por UsuarioId
             var calificacion = db.Calificacion.Include(c => c.Asignatura).Include(c => c.Estudiantes).Where(x => x.Estudiantes.EstudiantesId == 1);
