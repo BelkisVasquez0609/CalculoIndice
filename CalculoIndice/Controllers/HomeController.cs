@@ -11,6 +11,7 @@ using CalculoIndice.Models;
 using System.Web.Security;
 namespace CalculoIndice.Controllers
 {
+    
     public class HomeController : Controller
     {
         private CalculoIndiceEntities4 db = new CalculoIndiceEntities4();
@@ -21,8 +22,8 @@ namespace CalculoIndice.Controllers
 
             return View();
         }
-
        
+
         public ActionResult About(int EstudianteID )
         {
             var indice = (from s in db.Estudiantes
@@ -35,10 +36,10 @@ namespace CalculoIndice.Controllers
             return View();
         }
 
-        
-        public ActionResult Contact()
+     
+          public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Your Error page.";
 
             return View();
         }
@@ -59,8 +60,14 @@ namespace CalculoIndice.Controllers
                     message = "Account has not been activated.";
                     break;
                 default:
-                    FormsAuthentication.SetAuthCookie(user.Username, user.RememberMe);
-                    
+                    FormsAuthentication.SetAuthCookie(user.Username, true);
+
+                    System.Web.HttpContext.Current.User = new System.Security.Principal.GenericPrincipal(
+            new System.Security.Principal.GenericIdentity(user.Username),
+            new string[] { /* fill roles if any */ });
+
+                    CurrentUser = System.Web.HttpContext.Current.User.Identity.Name;
+
                     return RedirectToAction("About", new { EstudianteID = userId});
             }
 
@@ -75,5 +82,10 @@ namespace CalculoIndice.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Index");
         }
-    }
+
+        public static string CurrentUser = "";
+            
+            }
+
+   
 }

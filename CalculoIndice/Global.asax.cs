@@ -17,5 +17,16 @@ namespace CalculoIndice
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
+
+        protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
+        {
+            if (Response.StatusCode == 401)
+            {
+                Response.Clear();
+                Response.Redirect(Response.ApplyAppPathModifier("~/Home/Contact"));
+                return;
+            }
+        }
+
     }
 }
