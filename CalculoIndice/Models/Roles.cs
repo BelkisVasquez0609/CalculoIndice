@@ -12,17 +12,18 @@ namespace CalculoIndice.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Usuario
+    public partial class Roles
     {
-        public int UserId { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public string Email { get; set; }
-        public Nullable<System.DateTime> CreatedDate { get; set; }
-        public Nullable<System.DateTime> LastLoginDate { get; set; }
-        public Nullable<int> PerfilId { get; set; }
-        public Nullable<int> RolId { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Roles()
+        {
+            this.Usuario = new HashSet<Usuario>();
+        }
     
-        public virtual Roles Roles { get; set; }
+        public int RolId { get; set; }
+        public string Descripcion { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Usuario> Usuario { get; set; }
     }
 }

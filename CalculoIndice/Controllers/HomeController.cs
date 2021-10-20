@@ -22,12 +22,12 @@ namespace CalculoIndice.Controllers
             return View();
         }
 
-        
+       
         public ActionResult About(int EstudianteID )
         {
-            var indice = from s in db.Estudiantes
+            var indice = (from s in db.Estudiantes
                           where s.EstudiantesId == EstudianteID
-                          select s.Indice.Value;
+                          select s.Indice.Value).Single();
 
             ViewBag.Indice = 4.0;
             ViewBag.Message = "Su Indice es: "+ indice;
@@ -60,6 +60,7 @@ namespace CalculoIndice.Controllers
                     break;
                 default:
                     FormsAuthentication.SetAuthCookie(user.Username, user.RememberMe);
+                    
                     return RedirectToAction("About", new { EstudianteID = userId});
             }
 

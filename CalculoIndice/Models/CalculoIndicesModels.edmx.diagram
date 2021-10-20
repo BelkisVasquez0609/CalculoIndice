@@ -17,6 +17,8 @@
         <AssociationConnector Association="CalculoIndiceModel.FK__Calificac__Estud__30F848ED" ManuallyRouted="false" />
         <AssociationConnector Association="CalculoIndiceModel.FK__Estudiant__Carre__267ABA7A" ManuallyRouted="false" />
         <EntityTypeShape EntityType="CalculoIndiceModel.Usuario" Width="1.5" PointX="5.875" PointY="4.125" />
+        <EntityTypeShape EntityType="CalculoIndiceModel.Roles" Width="1.5" PointX="3.625" PointY="11.75" />
+        <AssociationConnector Association="CalculoIndiceModel.FK_Usuario_Roles" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -209,6 +209,9 @@
     <Compile Include="Models\Profesores.cs">
       <DependentUpon>CalculoIndicesModels.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Roles.cs">
+      <DependentUpon>CalculoIndicesModels.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Usuario.cs">
       <DependentUpon>CalculoIndicesModels.tt</DependentUpon>
     </Compile>

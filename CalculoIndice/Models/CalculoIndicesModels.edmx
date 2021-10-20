@@ -59,6 +59,13 @@
           <Property Name="Direccion" Type="text" />
           <Property Name="Telefono" Type="text" />
         </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="text" />
+        </EntityType>
         <EntityType Name="Usuario">
           <Key>
             <PropertyRef Name="UserId" />
@@ -69,7 +76,8 @@
           <Property Name="Email" Type="nvarchar" MaxLength="50" />
           <Property Name="CreatedDate" Type="date" />
           <Property Name="LastLoginDate" Type="date" />
-          <Property Name="EstudianteId" Type="int" />
+          <Property Name="PerfilId" Type="int" />
+          <Property Name="RolId" Type="int" />
         </EntityType>
         <Association Name="FK__Calificac__Asign__2F10007B">
           <End Role="Asignatura" Type="Self.Asignatura" Multiplicity="0..1" />
@@ -143,6 +151,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Usuario_Roles">
+          <End Role="Roles" Type="Self.Roles" Multiplicity="0..1" />
+          <End Role="Usuario" Type="Self.Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Function Name="GetIndice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
           <Parameter Name="Id" Type="int" Mode="In" />
         </Function>
@@ -156,6 +176,7 @@
           <EntitySet Name="Carrera" EntityType="Self.Carrera" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estudiantes" EntityType="Self.Estudiantes" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Profesores" EntityType="Self.Profesores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Usuario" EntityType="Self.Usuario" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Calificac__Asign__2F10007B" Association="Self.FK__Calificac__Asign__2F10007B">
             <End Role="Asignatura" EntitySet="Asignatura" />
@@ -180,6 +201,10 @@
           <AssociationSet Name="FK_Asignatura_Profesores" Association="Self.FK_Asignatura_Profesores">
             <End Role="Profesores" EntitySet="Profesores" />
             <End Role="Asignatura" EntitySet="Asignatura" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Usuario_Roles" Association="Self.FK_Usuario_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuario" EntitySet="Usuario" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -359,6 +384,11 @@
             <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="Roles" EntityType="CalculoIndiceModel.Roles" />
+          <AssociationSet Name="FK_Usuario_Roles" Association="CalculoIndiceModel.FK_Usuario_Roles">
+            <End Role="Roles" EntitySet="Roles" />
+            <End Role="Usuario" EntitySet="Usuario" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Usuario">
           <Key>
@@ -370,8 +400,30 @@
           <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="CreatedDate" Type="DateTime" Precision="0" />
           <Property Name="LastLoginDate" Type="DateTime" Precision="0" />
-          <Property Name="EstudianteId" Type="Int32" />
+          <Property Name="PerfilId" Type="Int32" />
+          <Property Name="RolId" Type="Int32" />
+          <NavigationProperty Name="Roles" Relationship="CalculoIndiceModel.FK_Usuario_Roles" FromRole="Usuario" ToRole="Roles" />
         </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="RolId" />
+          </Key>
+          <Property Name="RolId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Usuario" Relationship="CalculoIndiceModel.FK_Usuario_Roles" FromRole="Roles" ToRole="Usuario" />
+        </EntityType>
+        <Association Name="FK_Usuario_Roles">
+          <End Type="CalculoIndiceModel.Roles" Role="Roles" Multiplicity="0..1" />
+          <End Type="CalculoIndiceModel.Usuario" Role="Usuario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roles">
+              <PropertyRef Name="RolId" />
+            </Principal>
+            <Dependent Role="Usuario">
+              <PropertyRef Name="RolId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -440,7 +492,8 @@
           <EntitySetMapping Name="Usuario">
             <EntityTypeMapping TypeName="CalculoIndiceModel.Usuario">
               <MappingFragment StoreEntitySet="Usuario">
-                <ScalarProperty Name="EstudianteId" ColumnName="EstudianteId" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+                <ScalarProperty Name="PerfilId" ColumnName="PerfilId" />
                 <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
                 <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
@@ -451,6 +504,14 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="Validate_User" FunctionName="CalculoIndiceModel.Store.Validate_User" />
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="CalculoIndiceModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="RolId" ColumnName="RolId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
