@@ -13,13 +13,13 @@ namespace CalculoIndice.Controllers
     public class CarrerasController : Controller
     {
         private CalculoIndiceEntities4 db = new CalculoIndiceEntities4();
-
+        [CustomAuthorize(1)]
         // GET: Carreras
         public ActionResult Index()
         {
             return View(db.Carrera.ToList());
         }
-
+        [CustomAuthorize(1)]
         // GET: Carreras/Details/5
         public ActionResult Details(int? id)
         {
@@ -34,13 +34,13 @@ namespace CalculoIndice.Controllers
             }
             return View(carrera);
         }
-
+        [CustomAuthorize(1)]
         // GET: Carreras/Create
         public ActionResult Create()
         {
             return View();
         }
-
+        [CustomAuthorize(1)]
         // POST: Carreras/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -57,7 +57,7 @@ namespace CalculoIndice.Controllers
 
             return View(carrera);
         }
-
+        [CustomAuthorize(1)]
         // GET: Carreras/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -72,7 +72,7 @@ namespace CalculoIndice.Controllers
             }
             return View(carrera);
         }
-
+        [CustomAuthorize(1)]
         // POST: Carreras/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -88,7 +88,7 @@ namespace CalculoIndice.Controllers
             }
             return View(carrera);
         }
-
+        [CustomAuthorize(1)]
         // GET: Carreras/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -103,7 +103,7 @@ namespace CalculoIndice.Controllers
             }
             return View(carrera);
         }
-
+        [CustomAuthorize(1)]
         // POST: Carreras/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]

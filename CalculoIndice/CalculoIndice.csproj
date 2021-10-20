@@ -288,6 +288,7 @@
     <Compile Include="Controllers\Estudiantes1Controller.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProfesoresController.cs" />
+    <Compile Include="Controllers\UsuariosController.cs" />
     <Compile Include="DTO\PaginadorGenerico.cs" />
     <Compile Include="DTO\Usuarios.cs" />
     <Compile Include="Global.asax.cs">
@@ -417,6 +418,12 @@
     <Content Include="Views\Estudiantes1\Edit.cshtml" />
     <Content Include="Views\Estudiantes1\Index.cshtml" />
     <Content Include="Views\Estudiantes1\EstudiantesRanking.cshtml" />
+    <Content Include="Views\Calificacions\ReporteEstudiantesAsignaturaCalificaciones.cshtml" />
+    <Content Include="Views\Usuarios\Create.cshtml" />
+    <Content Include="Views\Usuarios\Delete.cshtml" />
+    <Content Include="Views\Usuarios\Details.cshtml" />
+    <Content Include="Views\Usuarios\Edit.cshtml" />
+    <Content Include="Views\Usuarios\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

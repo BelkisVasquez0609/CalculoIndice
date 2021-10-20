@@ -18,13 +18,14 @@ namespace CalculoIndice.Controllers
         private PaginadorGenerico<Models.Asignatura> _PaginadorAsignatura;
         private readonly int _RegistrosPorPagina = 10;
         // GET: Asignaturas
+        [CustomAuthorize(1)]
         public ActionResult Index()
         {
             var asignatura = db.Asignatura.Include(a => a.Asignatura2).Include(a => a.Asignatura3).Include(a => a.Profesores);
             return View(asignatura.ToList());
         }
         // GET: Asignaturas General
-        [CustomAuthorize(2)]
+        [CustomAuthorize(1)]
         public ActionResult ReporteAsignaturas(string buscar, int pagina = 1)
         {
             int _TotalRegistros = 0;
@@ -68,7 +69,8 @@ namespace CalculoIndice.Controllers
             return View(_PaginadorAsignatura);
            
         }
-        // GET: Asignaturas by filter
+        // GET: Reporte de asignaturas del profesor
+        [CustomAuthorize(2)]
         public ActionResult ReporteAsignaturasProfesor(string buscar, int pagina = 1)
         {
             int _TotalRegistros = 0;
@@ -111,7 +113,7 @@ namespace CalculoIndice.Controllers
             return View(_PaginadorAsignatura);
 
         }
-
+        [CustomAuthorize(1)]
         // GET: Asignaturas/Details/5
         public ActionResult Details(int? id)
         {
@@ -126,7 +128,7 @@ namespace CalculoIndice.Controllers
             }
             return View(asignatura);
         }
-
+        [CustomAuthorize(1)]
         // GET: Asignaturas/Create
         public ActionResult Create()
         {
@@ -135,7 +137,7 @@ namespace CalculoIndice.Controllers
             ViewBag.ProfesoresId = new SelectList(db.Profesores, "ProfesoresId", "Nombre");
             return View();
         }
-
+        [CustomAuthorize(1)]
         // POST: Asignaturas/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -155,7 +157,7 @@ namespace CalculoIndice.Controllers
             ViewBag.ProfesoresId = new SelectList(db.Profesores, "ProfesoresId", "Nombre", asignatura.ProfesoresId);
             return View(asignatura);
         }
-
+        [CustomAuthorize(1)]
         // GET: Asignaturas/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -173,7 +175,7 @@ namespace CalculoIndice.Controllers
             ViewBag.ProfesoresId = new SelectList(db.Profesores, "ProfesoresId", "Nombre", asignatura.ProfesoresId);
             return View(asignatura);
         }
-
+        [CustomAuthorize(1)]
         // POST: Asignaturas/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -192,7 +194,7 @@ namespace CalculoIndice.Controllers
             ViewBag.ProfesoresId = new SelectList(db.Profesores, "ProfesoresId", "Nombre", asignatura.ProfesoresId);
             return View(asignatura);
         }
-
+        [CustomAuthorize(1)]
         // GET: Asignaturas/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -207,7 +209,7 @@ namespace CalculoIndice.Controllers
             }
             return View(asignatura);
         }
-
+        [CustomAuthorize(1)]
         // POST: Asignaturas/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -218,7 +220,7 @@ namespace CalculoIndice.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
-
+        [CustomAuthorize(1)]
         protected override void Dispose(bool disposing)
         {
             if (disposing)

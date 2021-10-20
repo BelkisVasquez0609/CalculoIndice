@@ -31,7 +31,7 @@ namespace CalculoIndice.Controllers
                           select s.Indice.Value).Single();
 
             ViewBag.Indice = 4.0;
-            ViewBag.Message = "Su Indice es: "+ indice;
+            ViewBag.Message =  indice;
 
             return View();
         }

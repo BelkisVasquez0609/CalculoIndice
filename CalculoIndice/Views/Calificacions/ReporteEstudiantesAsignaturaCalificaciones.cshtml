@@ -1,0 +1,61 @@
+﻿@model CalculoIndice.DTO.PaginadorGenerico<CalculoIndice.Models.Calificacion>
+
+@{
+    ViewBag.Title = "ReporteEstudiantesAsignaturaCalificaciones";
+}
+
+</br>
+<center><h2 style="text-decoration: underline"><b> Reporte de Asignaturas</b></h2></center>
+</br>
+@*busqueda*@
+<div class="text-right form-inline">
+    <form method="get" action=@Url.Action("ReporteEstudiantesAsignaturaCalificaciones", "Asignaturas" )>
+        <div class="form-group">
+            <Label>
+                Descripción / Clave  asignatura    </ Label >
+                @Html.TextBox("buscar", null, new
+           {
+                    placeholder = "Texto de búsqueda",
+               @class = "form-control"
+           })
+        </div>
+        <button class="btn btn-default" type="submit">Buscar</button>
+    </form>
+</div>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            Calificación
+        </th>
+        <th>
+            Promedio
+        </th>
+        <th>
+            Clave asignatura
+        </th>
+        <th>
+            Estudiante
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Resultado)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Calificación)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Promedio)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asignatura.Clave)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Estudiantes.Nombre)
+            </td>
+        </tr>
+    }
+
+</table>

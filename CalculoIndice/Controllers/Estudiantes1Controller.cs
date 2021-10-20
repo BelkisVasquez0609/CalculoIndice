@@ -21,7 +21,7 @@ namespace CalculoIndice.Controllers
         private readonly int _RegistrosPorPagina = 10;
 
         // GET: Estudiantes1
-       
+        [CustomAuthorize(1)]
         public ActionResult Index()
         {
             var estudiantes = db.Estudiantes.Include(e => e.Carrera);
@@ -73,6 +73,7 @@ namespace CalculoIndice.Controllers
 
         }
         // GET: Estudiantes1/Details/5
+        [CustomAuthorize(1)]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -86,14 +87,14 @@ namespace CalculoIndice.Controllers
             }
             return View(estudiantes);
         }
-
+        [CustomAuthorize(1)]
         // GET: Estudiantes1/Create
         public ActionResult Create()
         {
             ViewBag.CarreraId = new SelectList(db.Carrera, "CarreraId", "Descripcion");
             return View();
         }
-
+        [CustomAuthorize(1)]
         // POST: Estudiantes1/Create
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -111,7 +112,7 @@ namespace CalculoIndice.Controllers
             ViewBag.CarreraId = new SelectList(db.Carrera, "CarreraId", "Descripcion", estudiantes.CarreraId);
             return View(estudiantes);
         }
-
+        [CustomAuthorize(1)]
         // GET: Estudiantes1/Edit/5
         public ActionResult Edit(int? id)
         {
@@ -127,7 +128,7 @@ namespace CalculoIndice.Controllers
             ViewBag.CarreraId = new SelectList(db.Carrera, "CarreraId", "Descripcion", estudiantes.CarreraId);
             return View(estudiantes);
         }
-
+        [CustomAuthorize(1)]
         // POST: Estudiantes1/Edit/5
         // Para protegerse de ataques de publicación excesiva, habilite las propiedades específicas a las que quiere enlazarse. Para obtener 
         // más detalles, vea https://go.microsoft.com/fwlink/?LinkId=317598.
@@ -144,7 +145,7 @@ namespace CalculoIndice.Controllers
             ViewBag.CarreraId = new SelectList(db.Carrera, "CarreraId", "Descripcion", estudiantes.CarreraId);
             return View(estudiantes);
         }
-
+        [CustomAuthorize(1)]
         // GET: Estudiantes1/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -159,7 +160,7 @@ namespace CalculoIndice.Controllers
             }
             return View(estudiantes);
         }
-
+        [CustomAuthorize(1)]
         // POST: Estudiantes1/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
