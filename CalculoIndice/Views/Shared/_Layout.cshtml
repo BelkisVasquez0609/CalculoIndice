@@ -1,52 +1,88 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
-
+    <link href="~/Content/Style.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Academic", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+    <div class="container-fluid display-table">
+        <div class="row display-table-row" style="top:-250px">
+            <div class="col-md-2 col-sm-1 hidden-xs display-table-cell v-align box" id="navigation">
+                <div class="navi">
+                    <ul>
+                        <li class="active"><a href="#"><center>ACADEMIC</center></a></li>
+                        <li>@Html.ActionLink("Asignaturas", "Index", "Asignaturas")</li>
+                        <li><span class="hidden-xs hidden-sm">@Html.ActionLink("Carreras", "Index", "Carreras")</span></li>
+                        <li><span class="hidden-xs hidden-sm">@Html.ActionLink("Calificaciones", "Index", "Calificacions")</span></li>
+                        <li><span class="hidden-xs hidden-sm">@Html.ActionLink("Reporte General Asignaturas", "ReporteAsignaturas", "Asignaturas")</span></li>
+                        <li><span class="hidden-xs hidden-sm">@Html.ActionLink("Reporte Asignaturas", "ReporteAsignaturasProfesor", "Asignaturas")</span></li>
+                        <li><span class="hidden-xs hidden-sm">@Html.ActionLink("EstudiantesPorRanking", "EstudiantesRanking", "Estudiantes1")</span></li>
+                        <li><span class="hidden-xs hidden-sm">@Html.ActionLink("Rep. Estudiantes Asignatura", "ReporteEstudiantesAsignatura", "Calificacions")</span></li>
+                        <li><span class="hidden-xs hidden-sm">@Html.ActionLink("Log out", "Index", "Home")</span></li>
+                    </ul>
+                </div>
             </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+            <div class="col-md-10 col-sm-11 display-table-cell v-align" >
+                <!--<button type="button" class="slide-toggle">Slide Toggle</button> -->
+                <div class="row"  style="background-color: darkblue">
+                    <header>
+                        <div class="col-md-7">
+                            <nav class="navbar-default pull-left">
+                                <div class="navbar-header" >
+                                    <button type="button" class="navbar-toggle collapsed" data-toggle="offcanvas" data-target="#side-menu" aria-expanded="false">
+                                        <span class="sr-only">Toggle navigation</span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                        <span class="icon-bar"></span>
+                                    </button>
+                                </div>
+                            </nav>
+                        </div>
+                        @*Nombre de Usuario*@
+                        <div class="col-md-5">
+                            <div class="header-rightside">
+                                <ul class="list-inline header-top pull-right">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <img src="http://jskrishna.com/work/merkury/images/user-pic.jpg" alt="user">
+                                            <b class="caret"></b>
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li>
+                                                <div class="navbar-content">
+                                                    <span>JS Krishna</span>
 
-                    <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Asignaturas", "Index", "Asignaturas")</li>
-                    <li>@Html.ActionLink("Carreras", "Index", "Carreras")</li>
-                    <li>@Html.ActionLink("Calificaciones", "Index", "Calificacions")</li>
-                    <li>@Html.ActionLink("Reporte General Asignaturas", "ReporteAsignaturas", "Asignaturas")</li>
-                    <li>@Html.ActionLink("Reporte Asignaturas", "ReporteAsignaturasProfesor", "Asignaturas")</li>
-                    <li>@Html.ActionLink("EstudiantesPorRanking", "EstudiantesRanking", "Estudiantes1")</li>
-                    <li>@Html.ActionLink("Rep. Estudiantes Asignatura", "ReporteEstudiantesAsignatura", "Calificacions")</li>
-                </ul>
-                </br> </br>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </header>
+                </div>
+
+                @*Dashboard*@
+                <div class="container body-content">
+                    @RenderBody()
+                    <hr />
+                    <footer>
+                        <center><b>&copy; @DateTime.Now.Year - APLICACIÓN CALCULO DE INDICE / GRUPO #15</b></center>
+                    </footer>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="container body-content">
-        </br>
-        @RenderBody()
-        <hr />
-        <footer>
-            <center><b>&copy; @DateTime.Now.Year - APLICACIÓN CALCULO DE INDICE / GRUPO #15</b></center>
-        </footer>
+
     </div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>
