@@ -25,9 +25,9 @@ namespace CalculoIndice.Controllers
         
         public ActionResult About(int EstudianteID )
         {
-            var indice = (from s in db.Estudiantes
+            var indice = from s in db.Estudiantes
                           where s.EstudiantesId == EstudianteID
-                          select s.Indice.Value).Single();
+                          select s.Indice.Value;
 
             ViewBag.Indice = 4.0;
             ViewBag.Message = "Su Indice es: "+ indice;
