@@ -21,12 +21,14 @@ namespace CalculoIndice.Controllers
         private readonly int _RegistrosPorPagina = 10;
 
         // GET: Estudiantes1
+       
         public ActionResult Index()
         {
             var estudiantes = db.Estudiantes.Include(e => e.Carrera);
             return View(estudiantes.ToList());
         }
         // GET: Estudiantes por Ranking
+        [CustomAuthorize(1)]
         public ActionResult EstudiantesRanking(string buscar, int pagina = 1)
         {
             int _TotalRegistros = 0;

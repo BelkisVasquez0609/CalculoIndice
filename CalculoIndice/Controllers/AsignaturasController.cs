@@ -24,6 +24,7 @@ namespace CalculoIndice.Controllers
             return View(asignatura.ToList());
         }
         // GET: Asignaturas General
+        [CustomAuthorize(2)]
         public ActionResult ReporteAsignaturas(string buscar, int pagina = 1)
         {
             int _TotalRegistros = 0;
