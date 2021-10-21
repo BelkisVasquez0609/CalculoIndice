@@ -1,80 +1,71 @@
 ﻿@model CalculoIndice.Models.Usuario
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Eliminar";
 }
 
-<h2>Delete</h2>
+<br />
+<center><h2><b>Eliminar usuario</b></h2></center>
 
-<h3>Are you sure you want to delete this?</h3>
+<h3>Estas seguro que deseas eliminar este usuario?</h3>
 <div>
     <h4>Usuario</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Username)
-        </dt>
+    <center>
+        <div class="container">
+            <div class="row" style="width:1650px">
+                <div class="col-lg-4">
+                    <dt>
+                        Usuario
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Username)
+                    </dd>
+                    <dt>
+                        Contraseña
+                    </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.Password)
+                    </dd>
+                    <dt>
+                        Email
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Username)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Email)
+                    </dd>
+                </div>
+                <div class="col-lg-4">
+                    <dt>
+                        Ultimo inicio de sesión
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Password)
-        </dt>
+                    <dd>
+                        @Html.DisplayFor(model => model.LastLoginDate)
+                    </dd>
+                    <dt>
+                        Roles
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Password)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Roles.Descripcion)
+                    </dd>
+                </div>
+            </div>
+        </div>
+    </center>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.CreatedDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.CreatedDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.LastLoginDate)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.LastLoginDate)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PerfilId)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PerfilId)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Roles.Descripcion)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Roles.Descripcion)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
+    @using (Html.BeginForm())
+    {
         @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+        <div style="margin-left: 450px;">
+            <br />
+            <input type="submit" value="Eliminar" class="btn btn-danger" style="width: 250px; position: center; top: 50%;" />
+            <br /> <br />
+        </div>
+        <div class="btn btn-info" style="width:280px">
+            @Html.ActionLink("Regresar a la lista de usuarios", "Index", new { @class = "btn btn-info" }, new { @style = "color:white;" })
+            <br />
         </div>
     }
 </div>
