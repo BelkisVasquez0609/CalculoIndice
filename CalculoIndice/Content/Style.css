@@ -647,6 +647,9 @@ header .logo img {
 .user-dashboard .sales h2 {
     font-size: 15px;
 }
+body {
+    padding:0 !important;
+}
 
 }
 }

@@ -1,0 +1,178 @@
+﻿@model CalculoIndice.DTO.PaginadorGenerico<CalculoIndice.Models.Asignatura>
+@{
+    ViewBag.Title = "Bienvenido";
+}
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
+<body class="home">
+    <div class="container-fluid display-table">
+
+        <div class="col-md-10 col-sm-11 display-table-cell v-align">
+            </hr>
+            <div class="user-dashboard">
+                </br>
+                <center><h2 style="text-decoration: underline"><b>Bienvenido</b></h2></center>
+                </hr>
+                <div class="row">
+                    </br>
+                    @*busqueda*@
+                    <div class="text-right form-inline">
+                        <form method="get" action=@Url.Action("DProfesor", "Home" )>
+                            <div class="form-group">
+                                <Label>
+                                    Descripción / Clave  asignatura    </ Label >
+                                    @Html.TextBox("buscar", null, new
+                               {
+                                        placeholder = "Texto de búsqueda",
+                                   @class = "form-control"
+                               })
+                            </div>
+                            <button class="btn btn-default" type="submit">Buscar</button>
+                        </form>
+                    </div>
+                    <br />
+
+                    <br />
+                    @*tabla*@
+                    <table class="table table-bordered">
+                        <tr>
+                            <th>
+                                Profesor
+                            </th>
+                            <th>
+                                CLAVE
+                            </th>
+                            <th>
+                                Nombre
+                            </th>
+                            <th>
+                                Credito
+                            </th>
+                            <th>
+                                Prerequisito
+                            </th>
+                            <th>
+                                Corequisito
+                            </th>
+
+                        </tr>
+
+                        @foreach (var item in Model.Resultado)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Profesores.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Clave)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Nombre)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Credito)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Asignatura2.Clave)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Asignatura3.Clave)
+                                </td>
+
+                            </tr>
+                        }
+
+                    </table>
+
+                    @*CÓDIGO PARA EL PAGINADOR DE REGISTROS*@
+                    @if (Model.Resultado.Count() > 0)
+                    {
+                        <span>
+                            <strong>@Model.TotalRegistros</strong> registros encontrados
+                        </span>
+                        <span>&nbsp;|&nbsp;</span>
+                        <span>
+                            Página <strong>@(Model.PaginaActual)</strong> de
+                            <strong>@Model.TotalPaginas</strong>
+                        </span>
+                        <span>&nbsp;|&nbsp;</span>
+                    }
+                    else
+                    {
+                        <span>No hay resultados para esta búsqueda</span>
+                        <span>&nbsp;|&nbsp;</span>
+                    }
+
+                    @if (Model.PaginaActual > 1)
+                    {
+                        @Html.ActionLink("<<", "ReporteAsignaturas", new { pagina = 1, buscar = Model.BusquedaActual },
+                                            new { @class = "btn btn-sm btn-default" })
+                        <span></span>
+                        @Html.ActionLink("Anterior", "ReporteAsignaturas", new
+                        {
+                            pagina = Model.PaginaActual - 1,
+                                                                    buscar = Model.BusquedaActual
+                        },
+                                                              new { @class = "btn btn-sm btn-default" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("<<", "ReporteAsignaturas", new
+                        {
+                            pagina = 1,
+                                                              buscar = Model.BusquedaActual
+                        },
+                                                        new { @class = "btn btn-sm btn-default disabled" })
+                        <span></span>
+                        @Html.ActionLink("Anterior", "ReporteAsignaturas", new
+                        {
+                            pagina = 1,
+                                                                    buscar = Model.BusquedaActual
+                        },
+                                                              new { @class = "btn btn-sm btn-default disabled" })
+                    }
+
+                    <span></span>
+
+                    @if (Model.PaginaActual < Model.TotalPaginas)
+                    {
+                        @Html.ActionLink("Siguiente", "ReporteAsignaturas", new
+                        {
+                            pagina = Model.PaginaActual + 1,
+                                                                     buscar = Model.BusquedaActual
+                        },
+                                                               new { @class = "btn btn-sm btn-default" })
+                        <span></span>
+                        @Html.ActionLink(">>", "ReporteAsignaturas", new
+                        {
+                            pagina = Model.TotalPaginas,
+                                                              buscar = Model.BusquedaActual
+                        },
+                                                        new { @class = "btn btn-sm btn-default" })
+                    }
+                    else
+                    {
+                        @Html.ActionLink("Siguiente", "ReporteAsignaturas", new
+                        {
+                            pagina = Model.TotalPaginas - 1,
+                                                                     buscar = Model.BusquedaActual
+                        },
+                                                               new { @class = "btn btn-sm btn-default disabled" })
+                        <span></span>
+                        @Html.ActionLink(">>", "ReporteAsignaturas", new
+                        {
+                            pagina = Model.TotalPaginas,
+                                                              buscar = Model.BusquedaActual
+                        },
+                                                        new { @class = "btn btn-sm btn-default disabled" })
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </div>
+
+</body>
+

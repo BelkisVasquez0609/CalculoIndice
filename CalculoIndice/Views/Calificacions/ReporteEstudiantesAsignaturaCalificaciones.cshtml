@@ -9,7 +9,7 @@
 </br>
 @*busqueda*@
 <div class="text-right form-inline">
-    <form method="get" action=@Url.Action("ReporteEstudiantesAsignaturaCalificaciones", "Asignaturas" )>
+    <form method="get" action=@Url.Action("ReporteEstudiantesAsignaturaCalificaciones", "Calificacions" )>
         <div class="form-group">
             <Label>
                 Descripción / Clave  asignatura    </ Label >
@@ -29,10 +29,10 @@
             Calificación
         </th>
         <th>
-            Promedio
+            Clave asignatura
         </th>
         <th>
-            Clave asignatura
+            Asignatura
         </th>
         <th>
             Estudiante
@@ -42,20 +42,20 @@
 
     @foreach (var item in Model.Resultado)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Calificación)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Promedio)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Asignatura.Clave)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estudiantes.Nombre)
-            </td>
-        </tr>
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Calificación)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Asignatura.Clave)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Asignatura.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Estudiantes.Nombre)
+    </td>
+</tr>
     }
 
 </table>
