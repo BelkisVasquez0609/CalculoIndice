@@ -27,6 +27,31 @@ namespace CalculoIndice.Controllers
 
             return View();
         }
+        public ActionResult Dashboards()
+        {
+            ViewBag.IdRolUsuario = IdRolUsuario;
+            return PartialView();
+        }
+        public ActionResult UserPerfil()
+        {
+            ViewBag.Usuario = CurrentUser;
+            return PartialView();
+        }
+        public ActionResult Menu()
+        {
+            ViewBag.Usuario = CurrentUser;
+            ViewBag.IdRolUsuario = IdRolUsuario;
+
+            return PartialView();
+        }
+        public ActionResult CambioContraseña()
+        {
+            return View();
+        }
+        public ActionResult SolicitarRegistro()
+        {
+            return View();
+        }
         [CustomAuthorize(1)]
         public ActionResult DAdmin(string buscar, int pagina = 1)
         {
@@ -78,7 +103,7 @@ namespace CalculoIndice.Controllers
             int _TotalPaginas = 0;
             //Cargar La Data
 
-            asignatura = db.Asignatura.Include(a => a.Asignatura2).Include(a => a.Asignatura3).Include(a => a.Profesores).Where(a => a.ProfesoresId == 1).ToList();
+            asignatura = db.Asignatura.Include(a => a.Asignatura2).Include(a => a.Asignatura3).Include(a => a.Profesores).Where(a => a.ProfesoresId == HomeController.IdProfile).ToList();
 
             // Filtro de Informacion
             if (!string.IsNullOrEmpty(buscar))
@@ -114,14 +139,23 @@ namespace CalculoIndice.Controllers
             return View();
         }
         [CustomAuthorize(3)]
-        public ActionResult About(int EstudianteID , int pagina = 1)
+        public ActionResult About(int EstudianteID , string buscar, int pagina = 1)
         {
             int _TotalRegistros = 0;
             int _TotalPaginas = 0;
 
             //Cargar La Data
-            calificacions = db.Calificacion.Include(c => c.Asignatura).Include(c => c.Estudiantes).Where(x => x.Estudiantes.EstudiantesId == 1).ToList();
+            calificacions = db.Calificacion.Include(c => c.Asignatura).Include(c => c.Estudiantes).Where(x => x.Estudiantes.EstudiantesId == HomeController.IdProfile).ToList();
 
+            // Filtro de Informacion
+            if (!string.IsNullOrEmpty(buscar))
+            {
+                foreach (var item in buscar.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    calificacions = db.Calificacion.Include(c => c.Asignatura).Include(c => c.Estudiantes).Where(x => x.Estudiantes.EstudiantesId == HomeController.IdProfile).ToList();
+                }
+
+            }
             // SISTEMA DE PAGINACIÓN
 
             // Número total de registros de la tabla Asignatura
@@ -185,9 +219,16 @@ namespace CalculoIndice.Controllers
 
                     CurrentUser = System.Web.HttpContext.Current.User.Identity.Name;
 
-                    return RedirectToAction("About", new { EstudianteID = userId});
-            }
+                    IdProfile = (from s in db.Usuario
+                                where s.Username == CurrentUser
+                                 select s.PerfilId.Value).Single();
 
+                    IdRolUsuario = (from s in db.Usuario
+                                   where s.Username == CurrentUser
+                                    select s.RolId.Value).Single();
+                    return RedirectToAction("Dashboards", new { EstudianteID = userId});
+            }
+            
             ViewBag.Message = message;
             return View("Index");
         }
@@ -201,8 +242,10 @@ namespace CalculoIndice.Controllers
         }
 
         public static string CurrentUser = "";
-            
-            }
+        public static int IdProfile = 0;
+        public static int IdRolUsuario = 0;
+
+    }
 
    
 }

@@ -1,0 +1,17 @@
+﻿@{
+    //Estudiante, RolId =3
+    if (ViewBag.IdRolUsuario == 3)
+    {
+        @Html.Action("About", "Home")
+    }
+    //Profesor, RolId =2
+    else if (ViewBag.IdRolUsuario == 2)
+    {
+        @Html.Action("DProfesor", "Home")
+    }
+    //Admin, RolId =1
+    else if (ViewBag.IdRolUsuario == 1)
+    {
+        @Html.Action("DAdmin", "Home")
+    }
+}

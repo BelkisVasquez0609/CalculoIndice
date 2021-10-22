@@ -77,7 +77,7 @@ namespace CalculoIndice.Controllers
             int _TotalPaginas = 0;
             //Cargar La Data
 
-            asignatura = db.Asignatura.Include(a => a.Asignatura2).Include(a => a.Asignatura3).Include(a => a.Profesores).Where(a => a.ProfesoresId == 1).ToList();
+            asignatura = db.Asignatura.Include(a => a.Asignatura2).Include(a => a.Asignatura3).Include(a => a.Profesores).Where(a => a.ProfesoresId == HomeController.IdProfile).ToList();
 
             // Filtro de Informacion
             if (!string.IsNullOrEmpty(buscar))

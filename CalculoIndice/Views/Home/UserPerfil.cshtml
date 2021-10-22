@@ -1,0 +1,24 @@
+﻿@*@model CalculoIndice.Models.Usuario*@
+
+@*Nombre de Usuario*@
+<div class="col-md-5">
+    <div class="header-rightside">
+        <ul class="list-inline header-top pull-right">
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    <img src="https://www.pngall.com/wp-content/uploads/5/User-Profile-PNG.png">
+                    <label>  <h4>@ViewBag.Usuario</h4></label>
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <div class="navbar-content">
+
+                            <label>  <h4>  @Html.ActionLink("Salir", "Index", "Home")</h4></label>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>
