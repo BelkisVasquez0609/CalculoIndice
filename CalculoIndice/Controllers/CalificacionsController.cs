@@ -22,7 +22,7 @@ namespace CalculoIndice.Controllers
         [CustomAuthorize(2)]
         public ActionResult Index()
         {
-            var calificacion = db.Calificacion.Include(c => c.Asignatura).Include(c => c.Estudiantes).Where(c=>c.Asignatura.ProfesoresId==1);
+            var calificacion = db.Calificacion.Include(c => c.Asignatura).Include(c => c.Estudiantes).Where(c=>c.Asignatura.ProfesoresId== HomeController.IdProfile);
             return View(calificacion.ToList());
         }
         [CustomAuthorize(2)]

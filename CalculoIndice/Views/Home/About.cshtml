@@ -1,5 +1,5 @@
-﻿@*@model CalculoIndice.DTO.PaginadorGenerico<CalculoIndice.Models.Calificacion>*@
-@model IEnumerable<CalculoIndice.Models.Calificacion>
+﻿@model CalculoIndice.DTO.PaginadorGenerico<CalculoIndice.Models.Calificacion>
+@*@model IEnumerable<CalculoIndice.Models.Calificacion>*@
 @{
     ViewBag.Title = "Bienvenido";
 }
@@ -63,7 +63,7 @@
                             <th></th>
                         </tr>
 
-                        @foreach (var item in Model)
+                        @foreach (var item in Model.Resultado)
                         {
                             <tr>
                                 <td>

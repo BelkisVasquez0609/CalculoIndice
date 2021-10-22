@@ -180,11 +180,11 @@ namespace CalculoIndice.Controllers
                           select s.Indice.Value).Single();
 
             ViewBag.Indice = 4.0;
-            ViewBag.Message =  indice;
+            ViewBag.Message = indice;
             ViewBag.Date = DateTime.Now.ToShortDateString();
 
             // Enviamos a la Vista la 'Clase de paginación'
-            return View(_PaginadorAsignatura);
+            return View(_PaginadorCalificacion);
         }
 
      
