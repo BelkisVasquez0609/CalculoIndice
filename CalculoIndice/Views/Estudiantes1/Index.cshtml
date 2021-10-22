@@ -7,9 +7,10 @@
 </br></br>
 <center><h2 style="text-decoration: underline"><b> Estudiantes</b></h2></center>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+<div class="btn btn-success" style="margin-bottom: 10px">
+    @Html.ActionLink("Crear nuevo Estudiante", "Create", new { @class = "btn btn-success" }, new { @style = "color:white;" })
+    <br />
+</div>
 <table class="table">
     <tr>
         <th>
@@ -38,34 +39,38 @@
 
     @foreach (var item in Model)
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Carrera.Descripcion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Matricula)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Nombre)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.CorreoElectronico)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.DNI)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Direccion)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Telefono)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.EstudiantesId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.EstudiantesId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.EstudiantesId })
-            </td>
-        </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Carrera.Descripcion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Matricula)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Nombre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CorreoElectronico)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DNI)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Direccion)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Telefono)
+        </td>
+        <td>
+            <div class="btn-group-vertical d-flex right">
+                <div class="btn btn-primary">
+                    @Html.ActionLink("Editar   ", "Edit", new { id = item.EstudiantesId }, new { @style = "color:white;" }) |
+                    @Html.ActionLink("Detalles", "Details", new { id = item.EstudiantesId }, new { @style = "color:white;" }) |
+                    @Html.ActionLink("Borrar ", "Delete", new { id = item.EstudiantesId }, new { @style = "color:white;" })
+                </div>
+            </div>
+        </td>
+    </tr>
     }
 
 </table>
